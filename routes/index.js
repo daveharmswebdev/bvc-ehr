@@ -3,16 +3,22 @@
 const { Router } = require('express')
 const router = Router()
 
-router.get('/', (req, res) => {
-	res.send({})
-})
+// routes
+const home = require('./home')
+const login = require('./login')
+const register = require('./register')
+const patient = require('./patient')
+const admit = require('./admit')
+const assess = require('./assess') 
 
-router.get('/register', (req, res) => {
-	res.send({})
-})
+// public routes
+router.use(register)
+router.use(login)
 
-router.get('/login', (req, res) => {
-	res.send({})
-})
+// private routes
+router.use(home)
+router.use(patient)
+router.use(admit)
+router.use(assess)
 
 module.exports = router

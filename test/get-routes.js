@@ -1,8 +1,6 @@
 'use strict'
 
-const { property } = require('chai').assert
 const request = require('supertest')
-
 
 describe('express', () => {
 	let app
@@ -54,7 +52,7 @@ describe('express', () => {
 
 	it('`GET /assess` should respond with JSON', (done) => {
 		request(app)
-			.get('/asses')
+			.get('/assess')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
