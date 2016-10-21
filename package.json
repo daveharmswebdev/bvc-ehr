@@ -4,7 +4,7 @@
   "description": "Broset Violence Checklist Electronic Health Reacord",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -w"
   },
   "repository": {
     "type": "git",
