@@ -8,8 +8,8 @@ const routes = require('../routes')
 
 app.use(routes)
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
 	console.log('now listening on port', PORT)
 })
 
-module.exports = server
+module.exports = app

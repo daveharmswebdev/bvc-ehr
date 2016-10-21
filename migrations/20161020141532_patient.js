@@ -165,15 +165,15 @@ exports.up = (knex, Promise) => {
 
 exports.down = (knex, Promise) => {
   return Promise.all([
-  	knex.schema.dropTable('seclusion_safety_check'),
-  	knex.schema.dropTable('seclusion'),
-  	knex.schema.dropTable('medication'),
-  	knex.schema.dropTable('intervention'),
-  	knex.schema.dropTable('broset'),
-  	knex.schema.dropTable('discharge'),
-  	knex.schema.dropTable('assessment'),
-  	knex.schema.dropTable('admission'),
-  	knex.schema.dropTable('patient'),
-  	knex.schema.dropTable('user')
+  	knex.schema.dropTableIfExists('seclusion_safety_check'),
+  	knex.schema.dropTableIfExists('seclusion'),
+  	knex.schema.dropTableIfExists('medication'),
+  	knex.schema.dropTableIfExists('intervention'),
+  	knex.schema.dropTableIfExists('broset'),
+  	knex.schema.dropTableIfExists('discharge'),
+  	knex.schema.dropTableIfExists('assessment'),
+  	knex.schema.dropTableIfExists('admission'),
+  	knex.schema.dropTableIfExists('patient'),
+  	knex.schema.dropTableIfExists('user')
 	])
 }

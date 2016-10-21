@@ -3,7 +3,7 @@
 const { Router } = require('express')
 const router = Router()
 
-router.get('/seclusion', (req,res) => {
+router.get('/api/seclusion', (req,res) => {
 	res.send({})
 })
 

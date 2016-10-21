@@ -3,7 +3,7 @@
 const { Router } = require('express')
 const router = Router()
 
-router.get('/assess', (req,res) => {
+router.get('/api/assess', (req,res) => {
 	res.send({})
 })
 
