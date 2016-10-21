@@ -57,4 +57,60 @@ describe('express', () => {
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
+
+	it('`GET /broset` should respond with JSON', (done) => {
+		request(app)
+			.get('/broset')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})
+
+	it('`GET /intervention` should respond with JSON', (done) => {
+		request(app)
+			.get('/intervention')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})
+
+	it('`GET /medication` should respond with JSON', (done) => {
+		request(app)
+			.get('/medication')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})	
+
+	it('`GET /seclusion` should respond with JSON', (done) => {
+		request(app)
+			.get('/seclusion')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})
+
+	it('`GET /safety-check` should respond with JSON', (done) => {
+		request(app)
+			.get('/safety-check')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})
+
+	it('`GET /discharge` should respond with JSON', (done) => {
+		request(app)
+			.get('/discharge')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})	
+
+	it('`GET /report` should respond with JSON', (done) => {
+		request(app)
+			.get('/report')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(done)
+	})	
 })
