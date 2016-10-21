@@ -19,8 +19,14 @@
   "homepage": "https://github.com/daveharmswebdev/bvc-ehr#readme",
   "dependencies": {
     "bookshelf": "^0.10.2",
+    "express": "^4.14.0",
     "knex": "^0.12.6",
     "pg": "^6.1.0",
     "sqlite3": "^3.1.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.1"
   }
 }
