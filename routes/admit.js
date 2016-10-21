@@ -3,7 +3,7 @@
 const { Router } = require('express')
 const router = Router()
 
-router.get('/admit', (req,res) => {
+router.get('/api/admit', (req,res) => {
 	res.send({})
 })
 

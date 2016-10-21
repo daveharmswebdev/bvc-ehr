@@ -1,15 +1,9 @@
 'use strict'
 
+const app = require('../server/server')
 const request = require('supertest')
 
 describe('express', () => {
-	let app
-	beforeEach(function() {
-		app = require('../server/server')
-	})
-	afterEach(function() {
-		app.close()
-	})
 	it('`GET /` should respond with JSON', (done) => {
 		request(app)
 			.get('/')
@@ -18,97 +12,89 @@ describe('express', () => {
 			.end(done)
 	})
 
-	it('`GET /register` should respond with JSON', (done) => {
+	it('`GET /api/register` should respond with JSON', (done) => {
 		request(app)
-			.get('/register')
+			.get('/api/register')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /login` should respond with JSON', (done) => {
+	it('`GET /api/login` should respond with JSON', (done) => {
 		request(app)
-			.get('/login')
+			.get('/api/login')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /patient` should respond with JSON', (done) => {
+	it('`GET /api/patient` should respond with JSON', (done) => {
 		request(app)
-			.get('/patient')
+			.get('/api/patient')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /admit` should respond with JSON', (done) => {
+	it('`GET /api/admit` should respond with JSON', (done) => {
 		request(app)
-			.get('/admit')
+			.get('/api/admit')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /assess` should respond with JSON', (done) => {
+	it('`GET /api/assess` should respond with JSON', (done) => {
 		request(app)
-			.get('/assess')
+			.get('/api/assess')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /broset` should respond with JSON', (done) => {
+	it('`GET /api/intervention` should respond with JSON', (done) => {
 		request(app)
-			.get('/broset')
+			.get('/api/intervention')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /intervention` should respond with JSON', (done) => {
+	it('`GET /api/medication` should respond with JSON', (done) => {
 		request(app)
-			.get('/intervention')
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(done)
-	})
-
-	it('`GET /medication` should respond with JSON', (done) => {
-		request(app)
-			.get('/medication')
+			.get('/api/medication')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})	
 
-	it('`GET /seclusion` should respond with JSON', (done) => {
+	it('`GET /api/seclusion` should respond with JSON', (done) => {
 		request(app)
-			.get('/seclusion')
+			.get('/api/seclusion')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /safety-check` should respond with JSON', (done) => {
+	it('`GET /api/safety-check` should respond with JSON', (done) => {
 		request(app)
-			.get('/safety-check')
+			.get('/api/safety-check')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})
 
-	it('`GET /discharge` should respond with JSON', (done) => {
+	it('`GET /api/discharge` should respond with JSON', (done) => {
 		request(app)
-			.get('/discharge')
+			.get('/api/discharge')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
 	})	
 
-	it('`GET /report` should respond with JSON', (done) => {
+	it('`GET /api/report` should respond with JSON', (done) => {
 		request(app)
-			.get('/report')
+			.get('/api/report')
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.end(done)
