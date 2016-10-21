@@ -115,15 +115,13 @@ exports.up = (knex, Promise) => {
   			.inTable('user')
   		table.string('intervention')
   		table.string('intervention_note')
-  		table.integer('medication_id')
-  		table.integer('seclusion_id')
   	}),
 
   	knex.schema.createTable('medication', table => {
   		table.increments('medication_id').primary()
-  		table.integer('admission_id')
-  			.references('admission_id')
-  			.inTable('admission')
+  		table.integer('intervention_id')
+  			.references('intervention_id')
+  			.inTable('intervention')
   		table.integer('user_id')
   			.references('user_id')
   			.inTable('user')
@@ -135,9 +133,9 @@ exports.up = (knex, Promise) => {
 
   	knex.schema.createTable('seclusion', table => {
   		table.increments('seclusion_id').primary()
-  		table.integer('admission_id')
-  			.references('admission_id')
-  			.inTable('admission')
+  		table.integer('intervention_id')
+  			.references('intervention_id')
+  			.inTable('intervention')
   		table.integer('user_id')
   			.references('user_id')
   			.inTable('user')
