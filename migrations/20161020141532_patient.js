@@ -105,15 +105,72 @@ exports.up = (knex, Promise) => {
   		table.boolean('attacking_furniture')
   	}),
 
-  	// knex.schema.createTable('', table => {}),
-  	// knex.schema.createTable('', table => {}),
-  	// knex.schema.createTable('', table => {}),
-  	// knex.schema.createTable('', table => {})
+  	knex.schema.createTable('intervention', table => {
+  		table.increments('intervention_id').primary()
+  		table.integer('admission_id')
+  			.references('admission_id')
+  			.inTable('admission')
+  		table.integer('user_id')
+  			.references('user_id')
+  			.inTable('user')
+  		table.string('intervention')
+  		table.string('intervention_note')
+  		table.integer('medication_id')
+  		table.integer('seclusion_id')
+  	}),
+
+  	knex.schema.createTable('medication', table => {
+  		table.increments('medication_id').primary()
+  		table.integer('admission_id')
+  			.references('admission_id')
+  			.inTable('admission')
+  		table.integer('user_id')
+  			.references('user_id')
+  			.inTable('user')
+  		table.string('medication')
+  		table.float('dose')
+  		table.string('units')
+  		table.string('route')
+  	}),
+
+  	knex.schema.createTable('seclusion', table => {
+  		table.increments('seclusion_id').primary()
+  		table.integer('admission_id')
+  			.references('admission_id')
+  			.inTable('admission')
+  		table.integer('user_id')
+  			.references('user_id')
+  			.inTable('user')
+  		table.dateTime('start_time')
+  		table.dateTime('end_time')
+  		table.string('physician1')
+  		table.string('physician2')
+  	}),
+
+  	knex.schema.createTable('seclusion_safety_check', table => {
+  		table.increments('check_id').primary()
+  		table.integer('seclusion_id')
+  			.references('seclusion_id')
+  			.inTable('seclusion')
+  		table.integer('user_id')
+  			.references('user_id')
+  			.inTable('user')
+  		table.dateTime('check_time')
+  		table.boolean('patient_safe')
+  		table.boolean('toileting_offered')
+  		table.boolean('food_offered')
+  		table.boolean('activity')
+  		table.boolean('disposition')
+  	})
 	])
 }
 
 exports.down = (knex, Promise) => {
   return Promise.all([
+  	knex.schema.dropTable('seclusion_safety_check'),
+  	knex.schema.dropTable('seclusion'),
+  	knex.schema.dropTable('medication'),
+  	knex.schema.dropTable('intervention'),
   	knex.schema.dropTable('broset'),
   	knex.schema.dropTable('discharge'),
   	knex.schema.dropTable('assessment'),
