@@ -1,0 +1,26 @@
+{
+  "name": "bvc-ehr",
+  "version": "1.0.0",
+  "description": "Broset Violence Checklist Electronic Health Reacord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveharmswebdev/bvc-ehr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveharmswebdev/bvc-ehr/issues"
+  },
+  "homepage": "https://github.com/daveharmswebdev/bvc-ehr#readme",
+  "dependencies": {
+    "bookshelf": "^0.10.2",
+    "knex": "^0.12.6",
+    "pg": "^6.1.0",
+    "sqlite3": "^3.1.6"
+  }
+}
