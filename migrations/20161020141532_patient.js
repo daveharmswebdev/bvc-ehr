@@ -157,8 +157,8 @@ exports.up = (knex, Promise) => {
   		table.boolean('patient_safe')
   		table.boolean('toileting_offered')
   		table.boolean('food_offered')
-  		table.boolean('activity')
-  		table.boolean('disposition')
+  		table.string('activity')
+  		table.string('disposition')
   	})
 	])
 }
