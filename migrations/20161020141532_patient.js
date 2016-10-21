@@ -44,7 +44,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('assessment', table => {
-  		table.integer('assessment_id').primary()
+  		table.increments('assessment_id').primary()
   		table.integer('admission_id')
   			.references('admission_id')
   			.inTable('admission')
@@ -70,10 +70,41 @@ exports.up = (knex, Promise) => {
   		table.timestamp('charted_at')
   	}),
 
-  	// knex.schema.createTable('discharge', table => {
-  		
-  	// }),
-  	
+  	knex.schema.createTable('discharge', table => {
+  		table.increments('discharge_id').primary()
+  		table.integer('admission_id')
+  			.references('admission_id')
+  			.inTable('admission')
+  		table.integer('discharge_rn')
+  			.references('user_id')
+  			.inTable('user')
+  		table.dateTime('discharge_date_time')
+  		table.string('discharge_to')
+  		table.string('self_other')
+  		table.string('discharge_note')
+  		table.boolean('suicidal')
+  		table.string('suicidal_plan')
+  		table.boolean('homicidal')
+  		table.string('homidical_plan')
+  		table.boolean('comprehends_dc_plan')
+  	}),
+
+  	knex.schema.createTable('broset', table => {
+  		table.increments('broset_id').primary()
+  		table.integer('admission_id')
+  			.references('admission_id')
+  			.inTable('admission')
+  		table.integer('user_id')
+  			.references('user_id')
+  			.inTable('user')
+  		table.boolean('confused')
+  		table.boolean('irritable')
+  		table.boolean('boisterous')
+  		table.boolean('verbal_threats')
+  		table.boolean('physical_threats')
+  		table.boolean('attacking_furniture')
+  	}),
+
   	// knex.schema.createTable('', table => {}),
   	// knex.schema.createTable('', table => {}),
   	// knex.schema.createTable('', table => {}),
@@ -83,6 +114,7 @@ exports.up = (knex, Promise) => {
 
 exports.down = (knex, Promise) => {
   return Promise.all([
+  	knex.schema.dropTable('broset'),
   	knex.schema.dropTable('discharge'),
   	knex.schema.dropTable('assessment'),
   	knex.schema.dropTable('admission'),
