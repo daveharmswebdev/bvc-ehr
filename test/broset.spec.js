@@ -52,28 +52,28 @@ describe('api routes', () => {
 				.request(app)
 				.post('/api/broset')
 				.send({
-					broset_id: 4,
-					admission_id: 1,
-					user_id: 1,
-					confused: true,
-					irritable: true,
-					boisterous: true,
-					verbal_threats: true,
-					physical_threats: true,
-					attacking_furniture: true
+					"broset_id": "4",
+					"admission_id": "1",
+					"user_id": "1",
+					"confused": "true",
+					"irritable": "true",
+					"boisterous": "true",
+					"verbal_threats": "true",
+					"physical_threats": "true",
+					"attacking_furniture": "true"
 				})
 				.end(function(err, res) {
 					res.should.have.status(200)
 					res.should.be.json
-					res.body.should.be.a('array')
-					res.body[0].should.have.property('broset_id')
-					res.body[0].broset_id.should.equal(4)
-					res.body[0].should.have.property('user_id')
-					res.body[0].user_id.should.equal(1)
-					res.body[0].should.have.property('confused')
-					res.body[0].confused.should.equal(1)
-					res.body[0].should.have.property('boisterous')
-					res.body[0].boisterous.should.equal(1)
+					res.body.should.be.a('object')
+					res.body.should.have.property('broset_id')
+					res.body.broset_id.should.equal(4)
+					res.body.should.have.property('user_id')
+					res.body.user_id.should.equal(1)
+					res.body.should.have.property('confused')
+					res.body.confused.should.equal(true)
+					res.body.should.have.property('boisterous')
+					res.body.boisterous.should.equal(true)
 					done()
 				})
 		})
