@@ -84,6 +84,9 @@ describe('api routes', () => {
 				.put('/api/intervention')
 				.send({
 					"intervention_id": "1",
+					"admission_id": "1",
+					"user_id": "1",
+					"intervention": "medication",
 					"intervention_note": "patient consented"
 				})
 				.end(function(err, res) {
