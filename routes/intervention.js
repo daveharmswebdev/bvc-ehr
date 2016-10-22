@@ -29,12 +29,10 @@ router.post('/api/intervention', (req, res, next) => {
 })
 
 router.put('/api/intervention', (req, res, next) => {
-	console.log('req.body for put', req.body.intervention_id)
 	knex('intervention')
 		.where('intervention_id', req.body.intervention_id)
 		.update(req.body)
 		.then(() => {
-			console.log('got to here &&&&&&&&&&')
 			knex('intervention')
 				.select()
 				.where('intervention_id', req.body.intervention_id)

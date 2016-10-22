@@ -31,7 +31,7 @@ describe('api routes', () => {
 				.get('/api/broset')
 				.end((err, res) => {
 					res.should.have.status(200)
-					res.should.be.json
+					res.should.be.json // jshint ignore:line
 					res.body.should.be.a('array')
 					res.body.length.should.equal(3)
 					res.body[0].should.have.property('broset_id')
@@ -64,7 +64,7 @@ describe('api routes', () => {
 				})
 				.end(function(err, res) {
 					res.should.have.status(200)
-					res.should.be.json
+					res.should.be.json // jshint ignore:line
 					res.body.should.be.a('object')
 					res.body.should.have.property('broset_id')
 					res.body.broset_id.should.equal(4)
@@ -78,7 +78,31 @@ describe('api routes', () => {
 				})
 		})
 
-		// it('should be able to change a broset score')
+		it('should be able to change a broset score', done => {
+			chai
+				.request(app)
+				.put('/api/broset')
+				.send({
+					"broset_id":"3",
+					"physical_threats":"false"
+				})
+				.end(function(err, res) {
+					res.should.have.status(200)
+					res.should.be.json // jshint ignore:line
+					res.body.should.be.a('object')
+					res.body.should.have.property('broset_id')
+					res.body.broset_id.should.equal(3)
+					res.body.should.have.property('user_id')
+					res.body.user_id.should.equal(1)
+					res.body.should.have.property('confused')
+					res.body.confused.should.equal(true)
+					res.body.should.have.property('boisterous')
+					res.body.boisterous.should.equal(true)
+					res.body.should.have.property('physical_threats')
+					res.body.physical_threats.should.equal(false)
+					done()					
+				})	
+		})
 	})
 })
 
