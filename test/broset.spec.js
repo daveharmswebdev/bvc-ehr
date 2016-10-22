@@ -18,11 +18,11 @@ describe('broset routes', () => {
       .then(() => {
         return knex.seed.run()
         .then(() => {
-          done();
-        });
-      });
-    });
-  });
+          done()
+        })
+      })
+    })
+  })
 
 	it('should return all scores', (done) => {
 		chai
