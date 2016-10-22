@@ -77,6 +77,8 @@ describe('api routes', () => {
 					done()
 				})
 		})
+
+		// it('should be able to change a broset score')
 	})
 })
 
