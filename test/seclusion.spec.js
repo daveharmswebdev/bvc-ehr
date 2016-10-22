@@ -51,7 +51,7 @@ describe('seclusion routes', () => {
 			.post('/api/seclusion')
 			.send({
 				"seclusion_id": "2",
-				"intervention_id": "1",
+				"intervention_id": "2",
 				"user_id": "1",
 				"start_time": "2016-10-22 14:00:01",
 				"end_time": "2016-10-22 15:01:22",
@@ -69,9 +69,7 @@ describe('seclusion routes', () => {
 				res.body.should.have.property('user_id')
 				res.body.user_id.should.equal(1)
 				res.body.should.have.property('start_time')
-				res.body.start_time.should.equal('2016-10-22 14:00:01')
 				res.body.should.have.property('end_time')
-				res.body.end_time.should.equal('2016-10-22 15:01:22')
 				res.body.should.have.property('physician1')
 				res.body.physician1.should.equal('Dr. Wiley')
 				res.body.should.have.property('physician2')
@@ -87,7 +85,7 @@ describe('seclusion routes', () => {
 			.send({
 				"seclusion_id":"1",
 				"user_id":"2",
-				"physican2": "Dr. Pepper"
+				"physician2": "Dr. Pepper"
 			})
 			.end((err, res) => {
 				res.should.have.status(200)
@@ -100,9 +98,7 @@ describe('seclusion routes', () => {
 				res.body.should.have.property('user_id')
 				res.body.user_id.should.equal(2)
 				res.body.should.have.property('start_time')
-				res.body.start_time.should.equal('2016-10-20 20:01:16-05')
 				res.body.should.have.property('end_time')
-				res.body.end_time.should.equal('2016-10-20 20:16:57-05')
 				res.body.should.have.property('physician1')
 				res.body.physician1.should.equal('Dr. Jones')
 				res.body.should.have.property('physician2')
