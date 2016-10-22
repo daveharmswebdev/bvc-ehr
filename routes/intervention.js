@@ -23,9 +23,7 @@ router.post('/api/intervention', (req, res, next) => {
 				.where('intervention_id', req.body.intervention_id)
 				.then( intervention => res.status(200).json(intervention[0]))
 		})
-		.catch(function(error) {
-			next(error)
-		})
+		.catch(error => next(error))
 })
 
 router.put('/api/intervention', (req, res, next) => {
@@ -38,9 +36,7 @@ router.put('/api/intervention', (req, res, next) => {
 				.where('intervention_id', req.body.intervention_id)
 				.then( intervention => res.status(200).json(intervention[0]))
 		})
-		.catch(function(error) {
-			next(error)
-		})
+		.catch(error => next(error))
 })
 
 module.exports = router
