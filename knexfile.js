@@ -36,7 +36,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'bvc-testing',
+      database: 'bvctesting',
       user:     'postgres',
       password: 'postgres'
     },
