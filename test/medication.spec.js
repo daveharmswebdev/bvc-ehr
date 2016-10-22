@@ -71,7 +71,7 @@ describe('medication routes', () => {
 				res.body.should.have.property('medication')
 				res.body.medication.should.equal('lortab 5/325')
 				res.body.should.have.property('dose')
-				res.body.dose.should.equal('1')
+				res.body.dose.should.equal(1)
 				res.body.should.have.property('units')
 				res.body.units.should.equal('tab')
 				res.body.should.have.property('route')
@@ -86,18 +86,18 @@ describe('medication routes', () => {
 			.put('/api/medication')
 			.send({
 				"medication_id":"1",
-				"dose": "1"
+				"dose": "1.5"
 			})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('object')
 				res.body.should.have.a.property('medication_id')
-				res.body.medication_id.shoul.equal(1)
+				res.body.medication_id.should.equal(1)
 				res.body.should.have.a.property('units')
 				res.body.units.should.equal('mg')
 				res.body.should.have.a.property('dose')
-				res.body.dose.should.equal('1')
+				res.body.dose.should.equal(1.5)
 				done()
 			})	
 	})
