@@ -13,6 +13,14 @@ exports.seed = function(knex, Promise) {
           intervention: 'medication',
           intervention_note: 'forced medication'
         }),
+
+        knex('intervention').insert({
+          intervention_id: 2, 
+          admission_id: 1,
+          user_id: 1,
+          intervention: 'seclusion',
+          intervention_note: 'no trauma to patient during seclusion'
+        }),
       ]);
     });
 };

@@ -52,14 +52,6 @@ describe('express', () => {
 			.end(done)
 	})
 
-	it('`GET /api/seclusion` should respond with JSON', (done) => {
-		request(app)
-			.get('/api/seclusion')
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(done)
-	})
-
 	it('`GET /api/safety-check` should respond with JSON', (done) => {
 		request(app)
 			.get('/api/safety-check')
