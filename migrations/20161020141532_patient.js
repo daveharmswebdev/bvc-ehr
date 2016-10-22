@@ -4,7 +4,7 @@ exports.up = (knex, Promise) => {
   
   return Promise.all([
 
-  	knex.schema.createTable('user', table => {
+  	knex.schema.createTable('staff', table => {
   		table.increments('user_id').primary()
   		table.string('last_name')
   		table.string('first_name')
@@ -28,7 +28,7 @@ exports.up = (knex, Promise) => {
   	knex.schema.createTable('admission', table => {
   		table.increments('admission_id').primary()
   		table.integer('patient_id').references('patient_id').inTable('patient')
-  		table.integer('admission_rn').references('user_id').inTable('user')
+  		table.integer('admission_rn').references('user_id').inTable('staff')
   		table.string('voluntary_status')
   		table.string('complaint')
   		table.string('symptoms')
@@ -66,7 +66,7 @@ exports.up = (knex, Promise) => {
   		table.string('speech')
   		table.integer('nurse_assessing')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.timestamp('charted_at')
   	}),
 
@@ -77,7 +77,7 @@ exports.up = (knex, Promise) => {
   			.inTable('admission')
   		table.integer('discharge_rn')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.dateTime('discharge_date_time')
   		table.string('discharge_to')
   		table.string('self_other')
@@ -96,7 +96,7 @@ exports.up = (knex, Promise) => {
   			.inTable('admission')
   		table.integer('user_id')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.boolean('confused')
   		table.boolean('irritable')
   		table.boolean('boisterous')
@@ -112,7 +112,7 @@ exports.up = (knex, Promise) => {
   			.inTable('admission')
   		table.integer('user_id')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.string('intervention')
   		table.string('intervention_note')
   	}),
@@ -124,7 +124,7 @@ exports.up = (knex, Promise) => {
   			.inTable('intervention')
   		table.integer('user_id')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.string('medication')
   		table.float('dose')
   		table.string('units')
@@ -138,7 +138,7 @@ exports.up = (knex, Promise) => {
   			.inTable('intervention')
   		table.integer('user_id')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.dateTime('start_time')
   		table.dateTime('end_time')
   		table.string('physician1')
@@ -152,7 +152,7 @@ exports.up = (knex, Promise) => {
   			.inTable('seclusion')
   		table.integer('user_id')
   			.references('user_id')
-  			.inTable('user')
+  			.inTable('staff')
   		table.dateTime('check_time')
   		table.boolean('patient_safe')
   		table.boolean('toileting_offered')
@@ -174,6 +174,6 @@ exports.down = (knex, Promise) => {
   	knex.schema.dropTableIfExists('assessment'),
   	knex.schema.dropTableIfExists('admission'),
   	knex.schema.dropTableIfExists('patient'),
-  	knex.schema.dropTableIfExists('user')
+  	knex.schema.dropTableIfExists('staff')
 	])
 }

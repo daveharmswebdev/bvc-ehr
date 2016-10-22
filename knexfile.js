@@ -3,14 +3,49 @@
 
 module.exports = {
 
+  // development: {
+  //   client: 'sqlite3',
+  //   connection: {
+  //     filename: './dev.sqlite3'
+  //   },
+  //   useNullAsDefault: true,
+  //   pool: {
+  //     afterCreate: (db, cb) => db.run('PRAGMA foreign_keys = ON', cb)
+  //   }
+  // },
+  // development: {
+  //   client: 'postgresql',
+  //   connection: {
+  //     host: '45.55.225.72',
+  //     port: 5432,
+  //     database: 'bvctesting',
+  //     user:     'postgres',
+  //     password: 'password'
+  //   },
+  //   pool: {
+  //     min: 2,
+  //     max: 10
+  //   },
+  //   migrations: {
+  //     tableName: 'knex_migrations'
+  //   }
+  // },
+  // 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
+      host: 'localhost',
+      port: 5432,
+      database: 'bvc-testing',
+      user:     'postgres',
+      password: 'postgres'
     },
-    useNullAsDefault: true,
     pool: {
-      afterCreate: (db, cb) => db.run('PRAGMA foreign_keys = ON', cb)
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
   },
 
