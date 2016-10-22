@@ -32,7 +32,7 @@ describe('api routes', () => {
 				.end((err, res) => {
 					console.log('res.body', res.body)
 					res.should.have.status(200)
-					res.should.be.json
+					res.should.be.json // jshint ignore:line
 					res.body.should.be.a('array')
 					res.body.length.should.be.equal(1)
 					res.body[0].should.have.property('intervention_id')
@@ -49,7 +49,7 @@ describe('api routes', () => {
 				})
 		})
 
-		it('should post a broset score', done => {
+		it('should post an intervention', done => {
 			chai
 				.request(app)
 				.post('/api/intervention')
@@ -62,7 +62,7 @@ describe('api routes', () => {
 				})
 				.end(function(err, res) {
 					res.should.have.status(200)
-					res.should.be.json
+					res.should.be.json // jshint ignore:line
 					res.body.should.be.a('object')
 					res.body.should.have.property('intervention_id')
 					res.body.intervention_id.should.equal(2)
@@ -74,6 +74,32 @@ describe('api routes', () => {
 					res.body.intervention.should.equal('counseling')
 					res.body.should.have.property('intervention_note')
 					res.body.intervention_note.should.equal('denies violent thoughts')
+					done()
+				})
+		})
+
+		it('should be able to update an intervention post', done => {
+			chai
+				.request(app)
+				.put('/api/intervention')
+				.send({
+					"intervention_id": "1",
+					"intervention_note": "patient consented"
+				})
+				.end(function(err, res) {
+					res.should.have.status(200)
+					res.should.be.json // jshint ignore:line
+					res.body.should.be.a('object')
+					res.body.should.have.property('intervention_id')
+					res.body.intervention_id.should.equal(1)
+					res.body.should.have.property('admission_id')
+					res.body.admission_id.should.equal(1)
+					res.body.should.have.property('user_id')
+					res.body.user_id.should.equal(1)
+					res.body.should.have.property('intervention')
+					res.body.intervention.should.equal('medication')
+					res.body.should.have.property('intervention_note')
+					res.body.intervention_note.should.equal('patient consented')
 					done()
 				})
 		})
