@@ -122,41 +122,36 @@ describe('admit routes', () => {
 			})
 	})
 
-	// it('should be able to updated an assessment', done => {
-	// 	chai
-	// 		.request(app)
-	// 		.put('/api/admit')
-	// 		.send({
-	// 			"assessment_id":"1",
-	// 			"homicidal":"false",
-	// 			"homicidal_plan": "now denies homicidal ideations"
-	// 		})
-	// 		.end((err, res) => {
-	// 			res.should.have.status(200)
-	// 			res.should.be.json // jshint ignore:line
-	// 			res.body.should.be.a('object')
-	// 			res.body.assessment_id.should.equal(1)
-	// 			res.body.admission_id.should.equal(1)
-	// 			res.body.oriented_person.should.equal(true)
-	// 			res.body.oriented_place.should.equal(true)
-	// 			res.body.oriented_time.should.equal(true)
-	// 			res.body.oriented_purpose.should.equal(true)
-	// 			res.body.suicidal.should.equal(true)
-	// 			res.body.suicidal_plan.should.equal('overdose on medication, narcotics at home')
-	// 			res.body.homicidal.should.equal(false)
-	// 			res.body.homicidal_plan.should.equal('now denies homicidal ideations')
-	// 			expect(res.body.visual_hallucinations).to.be.null // jshint ignore:line
-	// 			expect(res.body.audio_hallucinations).to.be.null // jshint ignore:line
-	// 			expect(res.body.tactile_hallucinations).to.be.null // jshint ignore:line
-	// 			res.body.hallucination_comments.should.equal('denies all hallucinations')
-	// 			res.body.affect.should.equal('flat')
-	// 			res.body.appetite.should.equal('anorexic, drank coffee for breakfast, no meal')
-	// 			res.body.appearance.should.equal('groomed')
-	// 			res.body.speech.should.equal('normal, but low in volume')
-	// 			res.body.nurse_assessing.should.equal(1)
-	// 			done()				
-	// 		})	
-	// })
+	it('should be able to updated an assessment', done => {
+		chai
+			.request(app)
+			.put('/api/admit/1')
+			.send({
+				"current_meds":"prozac",
+				"smoker":"true"
+			})
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.admission_id.should.equal(1)
+				res.body.patient_id.should.equal(1)
+				res.body.admission_rn.should.equal(1)
+				res.body.voluntary_status.should.equal('voluntary')
+				res.body.complaint.should.equal('suicidal ideation')
+				res.body.symptoms.should.equal('depression crying insomnia')
+				res.body.suicidal.should.equal(true)
+				res.body.suicidal_plan.should.equal('intentional overdose of narcotic pain medication')
+				res.body.homicidal.should.equal(false)
+				expect(res.body.homicidal_who).to.be.null // jshint ignore:line
+				expect(res.body.homicidal_plan).to.be.undefined // jshint ignore:line
+				res.body.behavioral_health_hx.should.equal('depressed since age 10, one past attempt at age 26.')
+				res.body.medical_hx.should.equal('type 1 diabetes')
+				res.body.current_meds.should.equal('prozac')
+				res.body.smoker.should.equal(true)
+				done()		
+			})	
+	})
 })
 
 
