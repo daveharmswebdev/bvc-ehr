@@ -8,6 +8,7 @@ const knex = require('knex')(config)
 router.get('/api/intervention', (req, res, next) => {
 	knex('intervention')
 		.select()
+		.where('admission_id', req.body.admission_id)
 		.then(interventions => {
 			res.status(200).json(interventions)
 		})

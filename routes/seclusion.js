@@ -18,10 +18,11 @@ router.get('/api/seclusion', (req, res, next) => {
 router.post('/api/seclusion', (req, res, next) => {
 	knex('seclusion')
 		.insert(req.body)
-		.then(() => {
+		.returning('seclusion_id')
+		.then(id => {
 			knex('seclusion')
 				.select()
-				.where('seclusion_id', req.body.seclusion_id)
+				.where('seclusion_id', id[0])
 				.then( seclusion => {
 					res.status(200).json(seclusion[0])
 				})
@@ -33,10 +34,11 @@ router.put('/api/seclusion', (req, res, next) => {
 	knex('seclusion')
 		.where('seclusion_id', req.body.seclusion_id)
 		.update(req.body)
-		.then(() => {
+		.returning('seclusion_id')
+		.then(id => {
 			knex('seclusion')
 				.select()
-				.where('seclusion_id', req.body.seclusion_id)
+				.where('seclusion_id', id[0])
 				.then( seclusion => res.status(200).json(seclusion[0]))
 		})
 		.catch(error => next(error))

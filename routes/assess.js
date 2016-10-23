@@ -28,16 +28,18 @@ router.post('/api/assess', (req, res, next) => {
 		})
 })
 
-// router.put('/api/assess', (req, res, next) => {
-// 	knex('assessment')
-// 		.where('medication_id', req.body.medication_id)
-// 		.update(req.body)
-// 		.then(() => {
-// 			knex('assessment')
-// 				.select()
-// 				.where('medication_id', req.body.medication_id)
-// 				.then(med => res.status(200).json(med[0]))
-// 		})
-// 		.catch(error => next(error))
+router.put('/api/assess', (req, res, next) => {
+	knex('assessment')
+		.where('assessment_id', req.body.assessment_id)
+		.update(req.body)
+		.returning('assessment_id')
+		.then(id => {
+			knex('assessment')
+				.select()
+				.where('assessment_id', id[0])
+				.then(med => res.status(200).json(med[0]))
+		})
+		.catch(error => next(error))
+})
 
 module.exports = router

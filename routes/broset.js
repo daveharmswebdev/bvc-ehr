@@ -8,6 +8,7 @@ const knex = require('knex')(config)
 router.get('/api/broset', (req, res, next) => {
 	knex('broset')
 		.select()
+		.where('admission_id', req.body.admission_id)
 		.then(broset => {
 			res.status(200).json(broset)
 		})
@@ -33,10 +34,11 @@ router.put('/api/broset', (req, res, next) => {
 	knex('broset')
 		.where('broset_id', req.body.broset_id)
 		.update(req.body)
-		.then(() => {
+		.returning('broset_id')
+		.then(id => {
 			knex('broset')
 				.select()
-				.where('broset_id', req.body.broset_id)
+				.where('broset_id', id[0])
 				.then( score => res.status(200).json(score[0]))
 		})
 		.catch(error => next(error))

@@ -24,10 +24,11 @@ describe('intervention routes', () => {
     });
   });
 
-	it('`GET /api/intervention` should respond with JSON', (done) => {
+	it('return interventions with admission_id', (done) => {
 		chai
 			.request(app)
 			.get('/api/intervention')
+			.send({"admission_id": "1"})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line

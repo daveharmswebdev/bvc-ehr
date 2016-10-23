@@ -1,7 +1,8 @@
 'use strict'
 
 const chai = require('chai')
-const should = chai.should()
+const should = chai.should
+const expect = chai.expect
 const chaiHttp = require('chai-http')
 const app = require('../server/server')
 const config = require('../knexfile').development
@@ -113,34 +114,41 @@ describe('assess routes', () => {
 			})
 	})
 
-	// it('should be able to change a broset score', done => {
-	// 	chai
-	// 		.request(app)
-	// 		.put('/api/assess')
-	// 		.send({
-	// 			"seclusion_id":"1",
-	// 			"user_id":"2",
-	// 			"physician2": "Dr. Pepper"
-	// 		})
-	// 		.end((err, res) => {
-	// 			res.should.have.status(200)
-	// 			res.should.be.json // jshint ignore:line
-	// 			res.body.should.be.a('object')
-	// 			res.body.should.have.property('seclusion_id')
-	// 			res.body.seclusion_id.should.equal(1)
-	// 			res.body.should.have.property('intervention_id')
-	// 			res.body.intervention_id.should.equal(1)
-	// 			res.body.should.have.property('user_id')
-	// 			res.body.user_id.should.equal(2)
-	// 			res.body.should.have.property('start_time')
-	// 			res.body.should.have.property('end_time')
-	// 			res.body.should.have.property('physician1')
-	// 			res.body.physician1.should.equal('Dr. Jones')
-	// 			res.body.should.have.property('physician2')
-	// 			res.body.physician2.should.equal('Dr. Pepper')
-	// 			done()				
-	// 		})	
-	// })
+	it('should be able to updated an assessment', done => {
+		chai
+			.request(app)
+			.put('/api/assess')
+			.send({
+				"assessment_id":"1",
+				"homicidal":"false",
+				"homicidal_plan": "now denies homicidal ideations"
+			})
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.assessment_id.should.equal(1)
+				res.body.admission_id.should.equal(1)
+				res.body.oriented_person.should.equal(true)
+				res.body.oriented_place.should.equal(true)
+				res.body.oriented_time.should.equal(true)
+				res.body.oriented_purpose.should.equal(true)
+				res.body.suicidal.should.equal(true)
+				res.body.suicidal_plan.should.equal('overdose on medication, narcotics at home')
+				res.body.homicidal.should.equal(false)
+				res.body.homicidal_plan.should.equal('now denies homicidal ideations')
+				expect(res.body.visual_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body.audio_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body.tactile_hallucinations).to.be.null // jshint ignore:line
+				res.body.hallucination_comments.should.equal('denies all hallucinations')
+				res.body.affect.should.equal('flat')
+				res.body.appetite.should.equal('anorexic, drank coffee for breakfast, no meal')
+				res.body.appearance.should.equal('groomed')
+				res.body.speech.should.equal('normal, but low in volume')
+				res.body.nurse_assessing.should.equal(1)
+				done()				
+			})	
+	})
 })
 
 

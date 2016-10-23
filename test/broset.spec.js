@@ -24,10 +24,11 @@ describe('broset routes', () => {
     })
   })
 
-	it('should return all scores', (done) => {
+	it('should return all scores based on admission', (done) => {
 		chai
 			.request(app)
 			.get('/api/broset')
+			.send({"admission_id":"1"})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
