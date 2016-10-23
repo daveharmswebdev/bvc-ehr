@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
             patient_id: 1,
             admission_rn: 1,
             voluntary_status: 'voluntary',
-            complaint: 'sucidal ideation',
+            complaint: 'suicidal ideation',
             symptoms: 'depression crying insomnia',
             suicidal: true,
             suicidal_plan: 'intentional overdose of narcotic pain medication',
