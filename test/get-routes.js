@@ -44,14 +44,6 @@ describe('express', () => {
 			.end(done)
 	})
 
-	it('`GET /api/assess` should respond with JSON', (done) => {
-		request(app)
-			.get('/api/assess')
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(done)
-	})
-
 	it('`GET /api/safety-check` should respond with JSON', (done) => {
 		request(app)
 			.get('/api/safety-check')

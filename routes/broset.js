@@ -17,10 +17,11 @@ router.get('/api/broset', (req, res, next) => {
 router.post('/api/broset', (req, res, next) => {
 	knex('broset')
 		.insert(req.body)
-		.then(() => {
+		.returning('broset_id')
+		.then( id => {
 			knex('broset')
 				.select()
-				.where('broset_id', req.body.broset_id)
+				.where('broset_id', id[0])
 				.then( score => {
 					res.status(200).json(score[0])
 				})
