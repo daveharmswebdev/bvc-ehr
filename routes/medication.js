@@ -18,10 +18,11 @@ router.get('/api/medication', (req, res, next) => {
 router.post('/api/medication', (req, res, next) => {
 	knex('medication')
 		.insert(req.body)
-		.then(() => {
+		.returning('medication_id')
+		.then(id => {
 			knex('medication')
 				.select()
-				.where('medication_id', req.body.medication_id)
+				.where('medication_id', id[0])
 				.then(med => {
 					res.status(200).json(med[0])
 				})
@@ -33,10 +34,11 @@ router.put('/api/medication', (req, res, next) => {
 	knex('medication')
 		.where('medication_id', req.body.medication_id)
 		.update(req.body)
-		.then(() => {
+		.returning('medication_id')
+		.then(id => {
 			knex('medication')
 				.select()
-				.where('medication_id', req.body.medication_id)
+				.where('medication_id', id[0])
 				.then(med => res.status(200).json(med[0]))
 		})
 		.catch(error => next(error))
