@@ -8,6 +8,7 @@ const knex = require('knex')(config)
 router.get('/api/broset', (req, res, next) => {
 	knex('broset')
 		.select()
+		.orderBy('broset_id')
 		.then(broset => {
 			res.status(200).json(broset)
 		})
@@ -28,6 +29,7 @@ router.get('/api/brosetByAdmission/:admissionId', (req, res, next) => {
 	knex('broset')
 		.select()
 		.where('admission_id', req.params.admissionId)
+		.orderBy('broset_id')
 		.then(broset => {
 			res.status(200).json(broset)
 		})
