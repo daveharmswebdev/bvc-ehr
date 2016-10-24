@@ -29,7 +29,6 @@ describe('assess routes', () => {
 		chai
 			.request(app)
 			.get('/api/assess')
-			.send({"admission_id":"1"})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
