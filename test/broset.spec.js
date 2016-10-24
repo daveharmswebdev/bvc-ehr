@@ -24,6 +24,13 @@ describe('broset routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('should return all scores based on admission', (done) => {
 		chai
 			.request(app)

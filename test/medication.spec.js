@@ -24,6 +24,13 @@ describe('medication routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('should return all medications for one admission_id', done => {
 		chai
 			.request(app)
