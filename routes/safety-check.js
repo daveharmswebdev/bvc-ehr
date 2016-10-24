@@ -8,8 +8,16 @@ const knex = require('knex')(config)
 router.get('/api/safety-check', (req, res, next) => {
 	knex('seclusion_safety_check')
 		.select()
-		.where('seclusion_id', req.body.seclusion_id)
+		.orderBy('check_id')
 		.then(seclusion => res.status(200).json(seclusion))
+		.catch(error => next(error))
+})
+
+router.get('/api/safety-check/:id', (req, res, next) => {
+	knex('seclusion_safety_check')
+		.select()
+		.where('check_id', req.params.id)
+		.then(seclusion => res.status(200).json(seclusion[0]))
 		.catch(error => next(error))
 })
 
@@ -38,6 +46,16 @@ router.put('/api/safety-check', (req, res, next) => {
 				.select()
 				.where('check_id', id[0])
 				.then(check => res.status(200).json(check[0]))
+		})
+		.catch(error => next(error))
+})
+
+router.delete('/api/safety-check/:id', (req, res, next) => {
+	knex('seclusion_safety_check')
+		.del()
+		.where('check_id', req.params.id)
+		.then(check => {
+			res.status(200).json(check)
 		})
 		.catch(error => next(error))
 })

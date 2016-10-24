@@ -56,4 +56,12 @@ router.put('/api/admit/:id', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+// router.delete('/api/admit/:id', (req, res, next) => {
+// 	knex('admission')
+// 		.where('admission_id', req.params.id)
+// 		.del()
+// 		.then(admission => res.status(200).json(admission))
+// 		.catch(error => next(error))
+// })
+
 module.exports = router

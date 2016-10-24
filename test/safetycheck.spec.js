@@ -32,11 +32,10 @@ describe('safety-check routes', () => {
     });
   });
 
-	it('should return all checks for given seclusion', (done) => {
+	it('should return all safety-checks', (done) => {
 		chai
 			.request(app)
 			.get('/api/safety-check')
-			.send({"seclusion_id":"1"})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
@@ -50,6 +49,26 @@ describe('safety-check routes', () => {
 				res.body[0].food_offered.should.equal(true)
 				res.body[0].activity.should.equal('resting')
 				res.body[0].disposition.should.equal('calm')
+				done()
+			})
+	})
+
+	it('should return safety-check by id', (done) => {
+		chai
+			.request(app)
+			.get('/api/safety-check/1')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.check_id.should.equal(1)
+				res.body.seclusion_id.should.equal(1)
+				res.body.user_id.should.equal(1)
+				res.body.patient_safe.should.equal(true)
+				res.body.toileting_offered.should.equal(true)
+				res.body.food_offered.should.equal(true)
+				res.body.activity.should.equal('resting')
+				res.body.disposition.should.equal('calm')
 				done()
 			})
 	})
@@ -107,6 +126,27 @@ describe('safety-check routes', () => {
 				res.body.disposition.should.equal('combative')
 				done()				
 			})	
+	})
+
+	it('should be able to del by id', done => {
+		chai
+			.request(app)
+			.delete('/api/safety-check/1')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.equal(1)		
+				chai
+					.request(app)
+					.get('/api/safety-check')
+					.end((err,res) => {
+						res.should.have.status(200)
+						res.should.be.json // jshint ignore:line
+						res.body.should.be.a('array')
+						res.body.length.should.equal(0)
+						done()						
+					})	
+			})
 	})
 })
 
