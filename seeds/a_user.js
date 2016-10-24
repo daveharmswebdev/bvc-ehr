@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
           user_id: 1, 
           last_name: 'Harms',
           first_name: 'Walter',
-          middle_initial: 'Dave',
+          middle_initial: 'D',
           role: 'manager',
           security_level: 3 
         }),
