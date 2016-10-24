@@ -136,7 +136,28 @@ describe('discharge routes', () => {
         res.body.comprehends_dc_plan.should.equal(true)
         done()   
       })
-  })    
+  })
+
+  it('should be able to del discharge by id', done => {
+    chai
+      .request(app)
+      .delete('/api/discharge/1')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/discharge')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(0)
+            done()            
+          })  
+      })
+  })      
 
 })
 

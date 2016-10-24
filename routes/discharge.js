@@ -56,4 +56,14 @@ router.put('/api/discharge/:id', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+router.delete('/api/discharge/:id', (req, res, next) => {
+	knex('discharge')
+		.del()
+		.where('discharge_id', req.params.id)
+		.then(discharge => {
+			res.status(200).json(discharge)
+		})
+		.catch(error => next(error))
+})
+
 module.exports = router
