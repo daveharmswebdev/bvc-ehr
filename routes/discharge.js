@@ -27,20 +27,20 @@ router.get('/api/discharge/:id', (req, res, next) => {
 })
 
 
-// router.post('/api/admit', (req, res, next) => {
-// 	knex('admission')
-// 		.insert(req.body)
-// 		.returning('admission_id')
-// 		.then( id => {
-// 			knex('admission')
-// 				.select()
-// 				.where('admission_id', id[0])
-// 				.then( admission => {
-// 					res.status(200).json(admission[0])
-// 				})
-// 		})
-// 		.catch( error => next(error))
-// })
+router.post('/api/discharge', (req, res, next) => {
+	knex('discharge')
+		.insert(req.body)
+		.returning('discharge_id')
+		.then( id => {
+			knex('discharge')
+				.select()
+				.where('discharge_id', id[0])
+				.then( dc => {
+					res.status(200).json(dc[0])
+				})
+		})
+		.catch( error => next(error))
+})
 
 // router.put('/api/admit/:id', (req, res, next) => {
 // 	knex('admission')

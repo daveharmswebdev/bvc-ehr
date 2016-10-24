@@ -75,36 +75,41 @@ describe('discharge routes', () => {
       })
   })
 
-  // it('should post a new discharge(admit a new discharge', done => {
-  //   chai
-  //     .request(app)
-  //     .post('/api/discharge')
-  //     .send({
-  //       "patient_id":"2",
-  //       "last_name":"Brown",
-  //       "first_name":"James",
-  //       "middle_initial":"K",
-  //       "birth_date":"1963-10-10",
-  //       "street_address":"123 street street",
-  //       "city":"Nashville",
-  //       "state":"TN",
-  //       "zip":"37215"
-  //     })
-  //     .end((err, res) => {
-  //       res.should.have.status(200)
-  //       res.should.be.json // jshint ignore:line
-  //       res.body.should.be.a('object')
-  //       res.body.patient_id.should.equal(2)
-  //       res.body.last_name.should.equal('Brown')
-  //       res.body.first_name.should.equal('James')
-  //       res.body.middle_initial.should.equal('K')
-  //       res.body.street_address.should.equal('123 street street')
-  //       res.body.city.should.equal('Nashville')
-  //       res.body.state.should.equal('TN')
-  //       res.body.zip.should.equal('37215')
-  //       done()
-  //     })
-  // })
+  it('should post a new discharge', done => {
+    chai
+      .request(app)
+      .post('/api/discharge')
+      .send({
+        "discharge_id":"2",
+        "admission_id":"1",
+        "discharge_rn":"1",
+        "discharge_to":"home",
+        "self_other":"self",
+        "discharge_note":"abcd",
+        "suicidal":"false",
+        "suicidal_plan":"denies suicidal ideation",
+        "homicidal":"false",
+        "homicidal_plan":"denies homicidal ideation",
+        "comprehends_dc_plan":"true"
+      })
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.be.a('object')
+        res.body.discharge_id.should.equal(2)
+        res.body.admission_id.should.equal(1)
+        res.body.discharge_rn.should.equal(1)
+        res.body.discharge_to.should.equal('home')
+        res.body.self_other.should.equal('self')
+        res.body.discharge_note.should.equal('abcd')
+        res.body.suicidal.should.equal(false)
+        res.body.suicidal_plan.should.equal('denies suicidal ideation')
+        res.body.homicidal.should.equal(false)
+        res.body.homicidal_plan.should.equal('denies homicidal ideation')
+        res.body.comprehends_dc_plan.should.equal(true)
+        done()
+      })
+  })
 
   // it('should update a discharge with new information', done => {
   //   chai
