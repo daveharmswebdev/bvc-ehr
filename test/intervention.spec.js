@@ -24,6 +24,13 @@ describe('intervention routes', () => {
     });
   });
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('return interventions with admission_id', (done) => {
 		chai
 			.request(app)

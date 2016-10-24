@@ -25,6 +25,13 @@ describe('safety-check routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('should return all checks for given seclusion', (done) => {
 		chai
 			.request(app)

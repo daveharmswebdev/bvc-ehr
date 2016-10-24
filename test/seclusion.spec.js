@@ -24,6 +24,13 @@ describe('seclusion routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('should return all seclusions for this admission', (done) => {
 		chai
 			.request(app)

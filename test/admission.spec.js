@@ -25,6 +25,13 @@ describe('admit routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
 	it('should return all admissions', (done) => {
 		chai
 			.request(app)

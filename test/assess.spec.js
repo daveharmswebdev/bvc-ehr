@@ -25,11 +25,18 @@ describe('assess routes', () => {
     })
   })
 
+  afterEach(function(done) {
+    knex.migrate.rollback()
+    .then(function() {
+      done();
+    });
+  });
+
+
 	it('should return all seclusions for this admission', (done) => {
 		chai
 			.request(app)
 			.get('/api/assess')
-			.send({"admission_id":"1"})
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
