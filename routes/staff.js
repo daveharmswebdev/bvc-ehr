@@ -28,33 +28,33 @@ router.get('/api/staff/:id', (req, res, next) => {
 })
 
 
-// router.post('/api/staff', (req, res, next) => {
-// 	knex('staff')
-// 		.insert(req.body)
-// 		.returning('admission_id')
-// 		.then( id => {
-// 			knex('staff')
-// 				.select()
-// 				.where('admission_id', id[0])
-// 				.then( staff => {
-// 					res.status(200).json(staff[0])
-// 				})
-// 		})
-// 		.catch( error => next(error))
-// })
+router.post('/api/staff', (req, res, next) => {
+	knex('staff')
+		.insert(req.body)
+		.returning('user_id')
+		.then(id => {
+			knex('staff')
+				.select()
+				.where('user_id', id[0])
+				.then(staff => {
+					res.status(200).json(staff[0])
+				})
+		})
+		.catch( error => next(error))
+})
 
-// router.put('/api/staff/:id', (req, res, next) => {
-// 	knex('staff')
-// 		.where('admission_id', req.params.id)
-// 		.update(req.body)
-// 		.returning('admission_id')
-// 		.then(id => {
-// 			knex('staff')
-// 				.select()
-// 				.where('admission_id', id[0])
-// 				.then( staff => res.status(200).json(staff[0]))
-// 		})
-// 		.catch(error => next(error))
-// })
+router.put('/api/staff/:id', (req, res, next) => {
+	knex('staff')
+		.where('user_id', req.params.id)
+		.update(req.body)
+		.returning('user_id')
+		.then(id => {
+			knex('staff')
+				.select()
+				.where('user_id', id[0])
+				.then(staff => res.status(200).json(staff[0]))
+		})
+		.catch(error => next(error))
+})
 
 module.exports = router
