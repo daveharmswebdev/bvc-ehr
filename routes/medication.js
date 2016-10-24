@@ -8,7 +8,28 @@ const knex = require('knex')(config)
 router.get('/api/medication', (req, res, next) => {
 	knex('medication')
 		.select()
-		.where('intervention_id', req.body.intervention_id)
+		.orderBy('medication_id')
+		.then(meds => {
+			res.status(200).json(meds)
+		})
+		.catch(error => next(error))
+})
+
+router.get('/api/medication/:id', (req, res, next) => {
+	knex('medication')
+		.select()
+		.where('medication_id', req.params.id)
+		.then(med => {
+			res.status(200).json(med[0])
+		})
+		.catch(error => next(error))
+})
+
+router.get('/api/medByIntervention/:interventionId', (req, res, next) => {
+	knex('medication')
+		.select()
+		.where('intervention_id', req.params.interventionId)
+		.orderBy('medication_id')
 		.then(med => {
 			res.status(200).json(med)
 		})
@@ -44,4 +65,13 @@ router.put('/api/medication', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+router.delete('/api/medication/:id', (req, res, next) => {
+	knex('medication')
+		.del()
+		.where('medication_id', req.params.id)
+		.then(meds => {
+			res.status(200).json(meds)
+		})
+		.catch(error => next(error))
+})
 module.exports = router
