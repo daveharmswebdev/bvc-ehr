@@ -111,29 +111,32 @@ describe('discharge routes', () => {
       })
   })
 
-  // it('should update a discharge with new information', done => {
-  //   chai
-  //     .request(app)
-  //     .put('/api/discharge/1')
-  //     .send({
-  //       "state":"KY",
-  //       "zip":"88888"
-  //     })
-  //     .end((err, res) => {
-  //       res.should.have.status(200)
-  //       res.should.be.json // jshint ignore:line
-  //       res.body.should.be.a('object')
-  //       res.body.patient_id.should.equal(1)
-  //       res.body.last_name.should.equal('White')
-  //       res.body.first_name.should.equal('Barry')
-  //       res.body.middle_initial.should.equal('O')
-  //       res.body.street_address.should.equal('2600 Anywhere Street')
-  //       res.body.city.should.equal('Knoxville')
-  //       res.body.state.should.equal('KY')
-  //       res.body.zip.should.equal('88888')
-  //       done()        
-  //     })
-  // })    
+  it('should update a discharge with new information', done => {
+    chai
+      .request(app)
+      .put('/api/discharge/1')
+      .send({
+        "suicidal_plan":"1234",
+        "homicidal_plan":"abcd"
+      })
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.be.a('object')
+        res.body.discharge_id.should.equal(1)
+        res.body.admission_id.should.equal(1)
+        res.body.discharge_rn.should.equal(1)
+        res.body.discharge_to.should.equal('home')
+        res.body.self_other.should.equal('self')
+        res.body.discharge_note.should.equal('patient denies suicidal or homicidal ideation')
+        res.body.suicidal.should.equal(false)
+        res.body.suicidal_plan.should.equal('1234')
+        res.body.homicidal.should.equal(false)
+        res.body.homicidal_plan.should.equal('abcd')
+        res.body.comprehends_dc_plan.should.equal(true)
+        done()   
+      })
+  })    
 
 })
 
