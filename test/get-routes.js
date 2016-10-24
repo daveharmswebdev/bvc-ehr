@@ -12,14 +12,6 @@ describe('express', () => {
 			.end(done)
 	})
 
-	it('`GET /api/register` should respond with JSON', (done) => {
-		request(app)
-			.get('/api/register')
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(done)
-	})
-
 	it('`GET /api/login` should respond with JSON', (done) => {
 		request(app)
 			.get('/api/login')
