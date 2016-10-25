@@ -32,6 +32,38 @@ describe('assess routes', () => {
     });
   });
 
+	it('should return all assessments', (done) => {
+		chai
+			.request(app)
+			.get('/api/assess')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('array')
+				res.body.length.should.equal(3)
+				res.body[0].should.have.property('assessment_id')
+				res.body[0].assessment_id.should.equal(1)
+				res.body[0].admission_id.should.equal(1)
+				res.body[0].oriented_person.should.equal(true)
+				res.body[0].oriented_place.should.equal(true)
+				res.body[0].oriented_time.should.equal(true)
+				res.body[0].oriented_purpose.should.equal(true)
+				res.body[0].suicidal.should.equal(true)
+				res.body[0].suicidal_plan.should.equal('overdose on medication, narcotics at home')
+				res.body[0].homicidal.should.equal(false)
+				expect(res.body[0].homicidal_plan).to.be.null // jshint ignore:line
+				expect(res.body[0].visual_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].audio_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].tactile_hallucinations).to.be.null // jshint ignore:line
+				res.body[0].hallucination_comments.should.equal('denies all hallucinations')
+				res.body[0].affect.should.equal('flat')
+				res.body[0].appetite.should.equal('anorexic, drank coffee for breakfast, no meal')
+				res.body[0].appearance.should.equal('groomed')
+				res.body[0].speech.should.equal('normal, but low in volume')
+				res.body[0].nurse_assessing.should.equal(1)
+				done()
+			})
+	})
 
 	it('should return all assessments by admission id', (done) => {
 		chai

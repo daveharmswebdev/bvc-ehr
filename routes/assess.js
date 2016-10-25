@@ -5,6 +5,14 @@ const router = Router()
 const config = require('../knexfile').development
 const knex = require('knex')(config)
 
+router.get('/api/assess', (req, res, next) => {
+	knex('assessment')
+		.select()
+		.orderBy('assessment_id')
+		.then(assessment => res.status(200).json(assessment))
+		.catch(error => next(error))
+})
+
 router.get('/api/assessmentsByAdmissionId/:id', (req, res, next) => {
 	knex('assessment')
 		.select()
