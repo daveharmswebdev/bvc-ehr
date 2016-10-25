@@ -217,6 +217,28 @@ describe('assess routes', () => {
 				done()				
 			})	
 	})
+
+  it('should be able to del assessment by id', done => {
+    chai
+      .request(app)
+      .delete('/api/assess/1')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/assess')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(2)
+            done()            
+          })  
+      })
+  }) 
+
 })
 
 

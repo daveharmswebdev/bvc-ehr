@@ -60,4 +60,14 @@ router.put('/api/assess', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+router.delete('/api/assess/:id', (req, res, next) => {
+	knex('assessment')
+		.del()
+		.where('assessment_id', req.params.id)
+		.then(assess => {
+			res.status(200).json(assess)
+		})
+		.catch(error => next(error))
+})
+
 module.exports = router
