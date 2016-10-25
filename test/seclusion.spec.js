@@ -31,11 +31,10 @@ describe('seclusion routes', () => {
     });
   });
 
-	it('should return all seclusions for this admission', (done) => {
+	it('returns all seclusions by admission_id', (done) => {
 		chai
 			.request(app)
-			.get('/api/seclusion')
-			.send({"admission_id":"1"})
+			.get('/api/seclusionByAdmission/1')
 			.end((err, res) => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
