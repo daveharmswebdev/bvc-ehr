@@ -40,7 +40,7 @@ describe('intervention routes', () => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('array')
-				res.body.length.should.be.equal(2)
+				res.body.length.should.be.equal(3)
 				res.body[0].should.have.property('intervention_id')
 				res.body[0].intervention_id.should.equal(1)
 				res.body[0].should.have.property('admission_id')
@@ -60,7 +60,7 @@ describe('intervention routes', () => {
 			.request(app)
 			.post('/api/intervention')
 			.send({
-				"intervention_id": "3",
+				"intervention_id": "4",
 				"admission_id": "1",
 				"user_id": "1",
 				"intervention": "counseling",
@@ -71,7 +71,7 @@ describe('intervention routes', () => {
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('object')
 				res.body.should.have.property('intervention_id')
-				res.body.intervention_id.should.equal(3)
+				res.body.intervention_id.should.equal(4)
 				res.body.should.have.property('admission_id')
 				res.body.admission_id.should.equal(1)
 				res.body.should.have.property('user_id')

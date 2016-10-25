@@ -31,6 +31,41 @@ describe('seclusion routes', () => {
     });
   });
 
+  it('returns all seclusions', done => {
+  	chai
+  		.request(app)
+  		.get('/api/seclusion')
+  		.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('array')
+				res.body.length.should.equal(2)
+				res.body[0].seclusion_id.should.equal(1)
+				res.body[0].intervention_id.should.equal(1)
+				res.body[0].user_id.should.equal(1)
+				res.body[0].physician1.should.equal('Dr. Jones')
+				res.body[0].physician2.should.equal('Dr. Smith')
+				done()  			
+  		})
+  })
+
+  it('return seclusion by id', done => {
+  	chai
+  		.request(app)
+  		.get('/api/seclusion/1')
+  		.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.seclusion_id.should.equal(1)
+				res.body.intervention_id.should.equal(1)
+				res.body.user_id.should.equal(1)
+				res.body.physician1.should.equal('Dr. Jones')
+				res.body.physician2.should.equal('Dr. Smith')
+				done()  			
+  		})
+  })
+
 	it('returns all seclusions by admission_id', (done) => {
 		chai
 			.request(app)
@@ -39,7 +74,7 @@ describe('seclusion routes', () => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('array')
-				res.body.length.should.equal(1)
+				res.body.length.should.equal(2)
 				res.body[0].should.have.property('seclusion_id')
 				res.body[0].should.have.property('intervention_id')
 				res.body[0].should.have.property('user_id')
@@ -56,8 +91,8 @@ describe('seclusion routes', () => {
 			.request(app)
 			.post('/api/seclusion')
 			.send({
-				"seclusion_id": "2",
-				"intervention_id": "2",
+				"seclusion_id": "3",
+				"intervention_id": "3",
 				"user_id": "1",
 				"start_time": "2016-10-22 14:00:01",
 				"end_time": "2016-10-22 15:01:22",
@@ -69,9 +104,9 @@ describe('seclusion routes', () => {
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('object')
 				res.body.should.have.property('seclusion_id')
-				res.body.seclusion_id.should.equal(2)
+				res.body.seclusion_id.should.equal(3)
 				res.body.should.have.property('intervention_id')
-				res.body.intervention_id.should.equal(2)
+				res.body.intervention_id.should.equal(3)
 				res.body.should.have.property('user_id')
 				res.body.user_id.should.equal(1)
 				res.body.should.have.property('start_time')
@@ -112,6 +147,29 @@ describe('seclusion routes', () => {
 				done()				
 			})	
 	})
+
+	it('should be able to del by id', done => {
+		chai
+			.request(app)
+			.delete('/api/seclusion/2')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.equal(1)		
+				chai
+					.request(app)
+					.get('/api/seclusion')
+					.end((err,res) => {
+						res.should.have.status(200)
+						res.should.be.json // jshint ignore:line
+						res.body.should.be.a('array')
+						res.body.length.should.equal(1)
+						done()						
+					})	
+			})
 	})
+
+
+})
 
 
