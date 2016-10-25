@@ -53,6 +53,17 @@ describe('safety-check routes', () => {
 			})
 	})
 
+	it('should error with improper security for get all', done => {
+		chai
+			.request(app)
+			.get('/api/safety-check')
+  		.send({security:0})
+			.end((err, res) => {
+				res.should.have.status(500)
+				done()
+			})
+	})
+
 	it('should return safety-check by id', (done) => {
 		chai
 			.request(app)
@@ -69,6 +80,17 @@ describe('safety-check routes', () => {
 				res.body.food_offered.should.equal(true)
 				res.body.activity.should.equal('resting')
 				res.body.disposition.should.equal('calm')
+				done()
+			})
+	})
+
+	it('should error with improper security for get by id', done => {
+		chai
+			.request(app)
+			.get('/api/safety-check/1')
+  		.send({security:0})
+			.end((err, res) => {
+				res.should.have.status(500)
 				done()
 			})
 	})
@@ -103,12 +125,31 @@ describe('safety-check routes', () => {
 			})
 	})
 
-	it('should be able to updated an assessment', done => {
+	it('should error when posting with out a seclusion', done => {
 		chai
 			.request(app)
-			.put('/api/safety-check')
+			.post('/api/safety-check')
 			.send({
-				"check_id":"1",
+				"check_id":"2",
+				"seclusion_id":"100",
+				"user_id":"2",
+				"patient_safe":"true",
+				"toileting_offered":"true",
+				"food_offered":"false",
+				"activity":"sleeping",
+				"disposition":"calm"
+			})
+			.end((err, res) => {
+				res.should.have.status(500)
+				done()
+			})
+	})
+
+	it('should be able to update an assessment', done => {
+		chai
+			.request(app)
+			.put('/api/safety-check/1')
+			.send({
 				"activity":"shouting",
 				"disposition": "combative"
 			})
@@ -148,6 +189,31 @@ describe('safety-check routes', () => {
 					})	
 			})
 	})
+
+	it('should error when updating with wrong data type', done => {
+		chai
+			.request(app)
+			.put('/api/safety-check/1')
+			.send({
+				"user_id":"abcdedfg",
+				"toileting_offered": "Dr. Pepper"
+			})				
+			.end((err, res) => {
+				res.should.have.status(500)
+				done()
+			})
+	})
+
+	it('should error when trying to delete with bad id', done => {
+		chai
+			.request(app)
+			.delete('/api/safety-check/20')
+			.end((err, res) => {
+				res.should.have.status(500)
+				done()
+			})
+	})
+
 })
 
 
