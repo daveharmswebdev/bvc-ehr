@@ -169,7 +169,26 @@ describe('seclusion routes', () => {
 			})
 	})
 
-
+	it('should error when deleting with key constraint', done => {
+		chai
+			.request(app)
+			.delete('/api/seclusion/1')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.equal(1)		
+				chai
+					.request(app)
+					.get('/api/seclusion')
+					.end((err,res) => {
+						res.should.have.status(200)
+						res.should.be.json // jshint ignore:line
+						res.body.should.be.a('array')
+						res.body.length.should.equal(1)
+						done()						
+					})	
+			})
+	})
 })
 
 
