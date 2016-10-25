@@ -32,8 +32,7 @@ describe('assess routes', () => {
     });
   });
 
-
-	it('should return all seclusions for this admission', (done) => {
+	it('should return all assessments', (done) => {
 		chai
 			.request(app)
 			.get('/api/assess')
@@ -44,27 +43,89 @@ describe('assess routes', () => {
 				res.body.length.should.equal(3)
 				res.body[0].should.have.property('assessment_id')
 				res.body[0].assessment_id.should.equal(1)
-				res.body[0].should.have.property('admission_id')
-				res.body[0].should.have.property('oriented_person')
-				res.body[0].should.have.property('oriented_place')
-				res.body[0].should.have.property('oriented_time')
+				res.body[0].admission_id.should.equal(1)
+				res.body[0].oriented_person.should.equal(true)
+				res.body[0].oriented_place.should.equal(true)
 				res.body[0].oriented_time.should.equal(true)
-				res.body[0].should.have.property('oriented_purpose')
-				res.body[0].should.have.property('suicidal')
-				res.body[0].should.have.property('suicidal_plan')
-				res.body[0].should.have.property('homicidal')
+				res.body[0].oriented_purpose.should.equal(true)
+				res.body[0].suicidal.should.equal(true)
+				res.body[0].suicidal_plan.should.equal('overdose on medication, narcotics at home')
 				res.body[0].homicidal.should.equal(false)
-				res.body[0].should.have.property('homicidal_plan')
-				res.body[0].should.have.property('visual_hallucinations')
-				res.body[0].should.have.property('audio_hallucinations')
-				res.body[0].should.have.property('tactile_hallucinations')
-				res.body[0].should.have.property('hallucination_comments')
-				res.body[0].should.have.property('affect')
-				res.body[0].should.have.property('appetite')
-				res.body[0].should.have.property('appearance')
-				res.body[0].should.have.property('speech')
-				res.body[0].should.have.property('nurse_assessing')
-				res.body[0].should.have.property('charted_at')
+				expect(res.body[0].homicidal_plan).to.be.null // jshint ignore:line
+				expect(res.body[0].visual_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].audio_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].tactile_hallucinations).to.be.null // jshint ignore:line
+				res.body[0].hallucination_comments.should.equal('denies all hallucinations')
+				res.body[0].affect.should.equal('flat')
+				res.body[0].appetite.should.equal('anorexic, drank coffee for breakfast, no meal')
+				res.body[0].appearance.should.equal('groomed')
+				res.body[0].speech.should.equal('normal, but low in volume')
+				res.body[0].nurse_assessing.should.equal(1)
+				done()
+			})
+	})
+
+	it('returns assessment by assessment_id', (done) => {
+		chai
+			.request(app)
+			.get('/api/assess/3')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.should.have.property('assessment_id')
+				res.body.assessment_id.should.equal(3)
+				res.body.admission_id.should.equal(1)
+				res.body.oriented_person.should.equal(true)
+				res.body.oriented_place.should.equal(true)
+				res.body.oriented_time.should.equal(true)
+				res.body.oriented_purpose.should.equal(true)
+				res.body.suicidal.should.equal(true)
+				res.body.suicidal_plan.should.equal('overdose on medication, narcotics at home')
+				res.body.homicidal.should.equal(false)
+				expect(res.body.homicidal_plan).to.be.null // jshint ignore:line
+				expect(res.body.visual_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body.audio_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body.tactile_hallucinations).to.be.null // jshint ignore:line
+				res.body.hallucination_comments.should.equal('denies all hallucinations')
+				res.body.affect.should.equal('flat')
+				res.body.appetite.should.equal('normal')
+				res.body.appearance.should.equal('groomed')
+				res.body.speech.should.equal('normal, but low in volume')
+				res.body.nurse_assessing.should.equal(1)
+				done()
+			})
+	})
+
+	it('should return all assessments by admission id', (done) => {
+		chai
+			.request(app)
+			.get('/api/assessmentsByAdmissionId/1')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('array')
+				res.body.length.should.equal(3)
+				res.body[0].should.have.property('assessment_id')
+				res.body[0].assessment_id.should.equal(1)
+				res.body[0].admission_id.should.equal(1)
+				res.body[0].oriented_person.should.equal(true)
+				res.body[0].oriented_place.should.equal(true)
+				res.body[0].oriented_time.should.equal(true)
+				res.body[0].oriented_purpose.should.equal(true)
+				res.body[0].suicidal.should.equal(true)
+				res.body[0].suicidal_plan.should.equal('overdose on medication, narcotics at home')
+				res.body[0].homicidal.should.equal(false)
+				expect(res.body[0].homicidal_plan).to.be.null // jshint ignore:line
+				expect(res.body[0].visual_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].audio_hallucinations).to.be.null // jshint ignore:line
+				expect(res.body[0].tactile_hallucinations).to.be.null // jshint ignore:line
+				res.body[0].hallucination_comments.should.equal('denies all hallucinations')
+				res.body[0].affect.should.equal('flat')
+				res.body[0].appetite.should.equal('anorexic, drank coffee for breakfast, no meal')
+				res.body[0].appearance.should.equal('groomed')
+				res.body[0].speech.should.equal('normal, but low in volume')
+				res.body[0].nurse_assessing.should.equal(1)
 				done()
 			})
 	})
@@ -156,6 +217,28 @@ describe('assess routes', () => {
 				done()				
 			})	
 	})
+
+  it('should be able to del assessment by id', done => {
+    chai
+      .request(app)
+      .delete('/api/assess/1')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/assess')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(2)
+            done()            
+          })  
+      })
+  }) 
+
 })
 
 
