@@ -54,7 +54,7 @@ exports.seed = function(knex, Promise) {
           homicidal: false,
           hallucination_comments: 'denies all hallucinations',
           affect: 'flat',
-          appetite: 'anorexic, drank coffee for breakfast, no meal',
+          appetite: 'normal',
           appearance: 'groomed',
           speech: 'normal, but low in volume',
           nurse_assessing: 1,

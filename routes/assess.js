@@ -13,6 +13,15 @@ router.get('/api/assess', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+router.get('/api/assess/:id', (req, res, next) => {
+	knex('assessment')
+		.select()
+		.where('assessment_id', req.params.id)
+		.orderBy('assessment_id')
+		.then(assessment => res.status(200).json(assessment[0]))
+		.catch(error => next(error))
+})
+
 router.get('/api/assessmentsByAdmissionId/:id', (req, res, next) => {
 	knex('assessment')
 		.select()
