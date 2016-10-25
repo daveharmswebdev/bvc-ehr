@@ -10,9 +10,12 @@ router.get('/api/admit', (req, res, next) => {
 	knex('admission')
 		.select()
 		.then(admissions => {
+			if (req.body.security < 1) {
+				return next('unauthorized')
+			}
 			res.status(200).json(admissions)
 		})
-		.catch( error => next(error))
+		.catch(next)
 })
 
 // returns admission based on id
@@ -21,9 +24,12 @@ router.get('/api/admit/:id', (req, res, next) => {
 		.select()
 		.where('admission_id', req.params.id)
 		.then(admissions => {
+			if (req.body.security < 1) {
+				return next('unauthorized')
+			}
 			res.status(200).json(admissions)
 		})
-		.catch( error => next(error))
+		.catch(next)
 })
 
 
@@ -55,13 +61,5 @@ router.put('/api/admit/:id', (req, res, next) => {
 		})
 		.catch(error => next(error))
 })
-
-// router.delete('/api/admit/:id', (req, res, next) => {
-// 	knex('admission')
-// 		.where('admission_id', req.params.id)
-// 		.del()
-// 		.then(admission => res.status(200).json(admission))
-// 		.catch(error => next(error))
-// })
 
 module.exports = router
