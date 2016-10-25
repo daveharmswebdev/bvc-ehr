@@ -24,8 +24,7 @@
     "express": "^4.14.0",
     "istanbul": "^0.4.5",
     "knex": "^0.12.6",
-    "pg": "^6.1.0",
-    "sqlite3": "^3.1.6"
+    "pg": "^6.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

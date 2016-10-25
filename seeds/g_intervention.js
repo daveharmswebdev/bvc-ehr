@@ -21,6 +21,14 @@ exports.seed = function(knex, Promise) {
           intervention: 'seclusion',
           intervention_note: 'no trauma to patient during seclusion'
         }),
+
+        knex('intervention').insert({
+          intervention_id: 3, 
+          admission_id: 1,
+          user_id: 1,
+          intervention: 'seclusion',
+          intervention_note: 'no trauma to patient during seclusion'
+        }),
       ]);
     });
 };
