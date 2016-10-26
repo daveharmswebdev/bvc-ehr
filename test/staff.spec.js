@@ -75,12 +75,15 @@ describe('staff routes', () => {
       .request(app)
       .post('/api/staff')
       .send({
-        "user_id":"4",
+        "user_name":"captain",
         "last_name":"Thomas",
         "first_name":"David",
         "middle_initial":"B",
         "role":"tech",
-        "security_level":1
+        "security_level":1,
+        "unit":"A",
+        "password":"123",
+        "confirmation":"123"
       })
       .end((err, res) => {
         res.should.have.status(200)
@@ -92,6 +95,48 @@ describe('staff routes', () => {
         res.body.middle_initial.should.equal('B')
         res.body.role.should.equal('tech')
         res.body.security_level.should.equal(1)
+        done()
+      })
+  })
+
+  it('should error with unmatched password', done => {
+    chai
+      .request(app)
+      .post('/api/staff')
+      .send({
+        "user_name":"captain",
+        "last_name":"Thomas",
+        "first_name":"David",
+        "middle_initial":"B",
+        "role":"tech",
+        "security_level":1,
+        "unit":"A",
+        "password":"123",
+        "confirmation":"124"
+      })
+      .end((err, res) => {
+        res.should.have.status(500)
+        done()
+      })
+  })
+
+    it('should error with redundant user', done => {
+    chai
+      .request(app)
+      .post('/api/staff')
+      .send({
+        "user_name":"cougar",
+        "last_name":"Thomas",
+        "first_name":"David",
+        "middle_initial":"B",
+        "role":"tech",
+        "security_level":1,
+        "unit":"A",
+        "password":"123",
+        "confirmation":"123"
+      })
+      .end((err, res) => {
+        res.should.have.status(500)
         done()
       })
   })
