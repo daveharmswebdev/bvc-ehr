@@ -2,5 +2,11 @@
 
 Broset Violence Checklist Electronic Health Record
 
+## Front End
+Angular
+
+## Back End
+Node/Express using Postgresql. When deployed Postgresql will be hosted on a DigitalOcean droplet.
+
 ## Testing
 This application relies on Mocha/Chai for testing and Istanbul for coverage. Online testing is facilitated [Travis-ci](https://travis-ci.org), and online coverage reporting is provided by [Coveralls.io](https://coveralls.io/).
