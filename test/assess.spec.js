@@ -5,8 +5,8 @@ const should = chai.should
 const expect = chai.expect
 const chaiHttp = require('chai-http')
 const app = require('../server/server')
-const config = require('../knexfile').development
-const knex = require('knex')(config)
+const { knexConfig } = require('../config')
+const knex = require('knex')(knexConfig)
 
 chai.use(chaiHttp)
 

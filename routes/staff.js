@@ -2,8 +2,8 @@
 
 const { Router } = require('express')
 const router = Router()
-const config = require('../knexfile').development
-const knex = require('knex')(config)
+const { knexConfig } = require('../config')
+const knex = require('knex')(knexConfig)
 
 // returns all staff
 router.get('/api/staff', (req, res, next) => {
