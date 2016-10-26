@@ -4,7 +4,6 @@ const { Router } = require('express')
 const router = Router()
 
 // routes
-const home = require('./home')
 const login = require('./login')
 const register = require('./register')
 const staff = require('./staff')
@@ -24,7 +23,6 @@ router.use(register)
 router.use(login)
 
 // private routes
-router.use(home)
 router.use(staff)
 router.use(patient)
 router.use(admit)
