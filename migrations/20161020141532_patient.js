@@ -5,16 +5,19 @@ exports.up = (knex, Promise) => {
   return Promise.all([
 
   	knex.schema.createTable('staff', table => {
-  		table.increments('user_id').primary()
-  		table.string('last_name')
-  		table.string('first_name')
-  		table.string('middle_initial')
-  		table.string('role')
-  		table.integer('security_level')
+  		table.increments('user_id')
+      table.string('user_name')
+      table.string('last_name')
+      table.string('first_name')
+      table.string('middle_initial')
+      table.string('role')
+      table.integer('security_level')
+      table.string('unit')
+      table.string('password')
   	}),
 
   	knex.schema.createTable('patient', table => {
-  		table.increments('patient_id').primary()
+  		table.increments('patient_id')
   		table.string('last_name')
   		table.string('first_name')
   		table.string('middle_initial')
@@ -26,7 +29,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('admission', table => {
-  		table.increments('admission_id').primary()
+  		table.increments('admission_id')
   		table.integer('patient_id').references('patient_id').inTable('patient')
   		table.integer('admission_rn').references('user_id').inTable('staff')
   		table.string('voluntary_status')
@@ -44,7 +47,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('assessment', table => {
-  		table.increments('assessment_id').primary()
+  		table.increments('assessment_id')
   		table.integer('admission_id')
   			.references('admission_id')
   			.inTable('admission')
@@ -71,7 +74,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('discharge', table => {
-  		table.increments('discharge_id').primary()
+  		table.increments('discharge_id')
   		table.integer('admission_id')
   			.references('admission_id')
   			.inTable('admission')
@@ -90,7 +93,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('broset', table => {
-  		table.increments('broset_id').primary()
+  		table.increments('broset_id')
   		table.integer('admission_id')
   			.references('admission_id')
   			.inTable('admission')
@@ -106,7 +109,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('intervention', table => {
-  		table.increments('intervention_id').primary()
+  		table.increments('intervention_id')
   		table.integer('admission_id')
   			.references('admission_id')
   			.inTable('admission')
@@ -118,7 +121,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('medication', table => {
-  		table.increments('medication_id').primary()
+  		table.increments('medication_id')
   		table.integer('intervention_id')
   			.references('intervention_id')
   			.inTable('intervention')
@@ -132,7 +135,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('seclusion', table => {
-  		table.increments('seclusion_id').primary()
+  		table.increments('seclusion_id')
   		table.integer('intervention_id')
   			.references('intervention_id')
   			.inTable('intervention')
@@ -146,7 +149,7 @@ exports.up = (knex, Promise) => {
   	}),
 
   	knex.schema.createTable('seclusion_safety_check', table => {
-  		table.increments('check_id').primary()
+  		table.increments('check_id')
   		table.integer('seclusion_id')
   			.references('seclusion_id')
   			.inTable('seclusion')
