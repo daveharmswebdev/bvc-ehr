@@ -34,7 +34,7 @@ describe('intervention routes', () => {
 	it('return interventions with admission_id', (done) => {
 		chai
 			.request(app)
-			.get('/api/intervention')
+			.get('/api/interventionByAdmission/1')
 			.send({"admission_id": "1"})
 			.end((err, res) => {
 				res.should.have.status(200)

@@ -5,11 +5,11 @@ const router = Router()
 const { knexConfig } = require('../config')
 const knex = require('knex')(knexConfig)
 
-router.get('/api/intervention', (req, res, next) => {
+router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 	knex('intervention')
 		.select()
 		.orderBy('intervention_id')
-		.where('admission_id', req.body.admission_id)
+		.where('admission_id', req.params.admissionId)
 		.then(interventions => {
 			res.status(200).json(interventions)
 		})

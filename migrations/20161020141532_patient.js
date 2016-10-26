@@ -11,6 +11,8 @@ exports.up = (knex, Promise) => {
   		table.string('middle_initial')
   		table.string('role')
   		table.integer('security_level')
+      table.string('unit')
+      table.string('password')
   	}),
 
   	knex.schema.createTable('patient', table => {
