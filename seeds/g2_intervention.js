@@ -10,5 +10,5 @@ exports.seed = function(knex, Promise) {
       intervention: 'seclusion',
       intervention_note: 'no trauma to patient during seclusion'
     })
-      ]);
+  ]);
 };

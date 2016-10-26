@@ -5,11 +5,14 @@ exports.seed = function(knex, Promise) {
   return Promise.all([
     // Inserts seed entries
     knex('staff').insert({
+      user_name: 'viper',
       last_name: 'Bateman',
       first_name: 'Patrick',
       middle_initial: 'F',
       role: 'technician',
-      security_level: 1
+      security_level: 1,
+      unit: 'B',
+      password: '123'
     })
   ]);
 };

@@ -3,11 +3,14 @@
 app.controller('RegisterCtrl', function($scope, $http) {
 	$scope.reg = function() {
 		let staff = {
-			last_name: $scope.registration.lastName,
-			first_name: $scope.registration.firstName,
-			middle_initial: $scope.registration.middleInitial,
-			role: $scope.registration.role,
-			security_level: $scope.registration.securityLevel
+			user_name: $scope.username,
+			last_name: $scope.lastName,
+			first_name: $scope.firstName,
+			middle_initial: $scope.middleInitial,
+			role: $scope.role,
+			security_level: $scope.securityLevel,
+			unit: $scope.unit,
+			password: $scope.password
 		}
 
 		$http
