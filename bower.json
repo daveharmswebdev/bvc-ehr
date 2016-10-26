@@ -1,0 +1,25 @@
+{
+  "name": "bvc-ehr",
+  "description": "Broset Violence Checklist Electronic Health Reacord",
+  "main": "index.js",
+  "authors": [
+    "Dave Harms <daveharmswebdev@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/daveharmswebdev/bvc-ehr",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "ngstorage": "^0.3.11"
+  }
+}
