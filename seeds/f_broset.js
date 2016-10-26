@@ -7,7 +7,6 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('broset').insert({
-          broset_id: 1, 
           admission_id: 1,
           user_id: 1,
           confused: true,
@@ -18,7 +17,6 @@ exports.seed = function(knex, Promise) {
           attacking_furniture: false
         }),
         knex('broset').insert({
-          broset_id: 2, 
           admission_id: 1,
           user_id: 1,
           confused: true,
@@ -29,7 +27,6 @@ exports.seed = function(knex, Promise) {
           attacking_furniture: false
         }),
         knex('broset').insert({
-          broset_id: 3, 
           admission_id: 1,
           user_id: 1,
           confused: true,

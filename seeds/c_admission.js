@@ -8,7 +8,6 @@ exports.seed = function(knex, Promise) {
         // Inserts seed entries
         knex('admission')
           .insert({
-            admission_id: 1, 
             patient_id: 1,
             admission_rn: 1,
             voluntary_status: 'voluntary',

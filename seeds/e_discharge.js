@@ -7,7 +7,6 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('discharge').insert({
-          discharge_id: 1, 
           admission_id: 1,
           discharge_rn: 1,
           discharge_date_time: knex.fn.now(),

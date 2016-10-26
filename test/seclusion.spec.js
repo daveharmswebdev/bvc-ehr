@@ -158,7 +158,7 @@ describe('seclusion routes', () => {
 			.request(app)
 			.post('/api/seclusion')
 			.send({
-				"intervention_id": "3",
+				"intervention_id": "300",
 				"user_id": "1",
 				"start_time": "2016-10-22 14:00:01",
 				"end_time": "2016-10-22 15:01:22",

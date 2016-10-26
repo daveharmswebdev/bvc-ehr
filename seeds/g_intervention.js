@@ -7,7 +7,6 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('intervention').insert({
-          intervention_id: 1, 
           admission_id: 1,
           user_id: 1,
           intervention: 'medication',
@@ -15,7 +14,6 @@ exports.seed = function(knex, Promise) {
         }),
 
         knex('intervention').insert({
-          intervention_id: 2, 
           admission_id: 1,
           user_id: 1,
           intervention: 'seclusion',
@@ -23,7 +21,6 @@ exports.seed = function(knex, Promise) {
         }),
 
         knex('intervention').insert({
-          intervention_id: 3, 
           admission_id: 1,
           user_id: 1,
           intervention: 'seclusion',

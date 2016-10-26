@@ -7,7 +7,6 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('assessment').insert({
-          assessment_id: 1, 
           admission_id: 1,
           oriented_person: true,
           oriented_place: true,
@@ -25,7 +24,6 @@ exports.seed = function(knex, Promise) {
           charted_at: knex.fn.now() 
         }),
         knex('assessment').insert({
-          assessment_id: 2, 
           admission_id: 1,
           oriented_person: true,
           oriented_place: true,
@@ -43,7 +41,6 @@ exports.seed = function(knex, Promise) {
           charted_at: knex.fn.now() 
         }),
         knex('assessment').insert({
-          assessment_id: 3, 
           admission_id: 1,
           oriented_person: true,
           oriented_place: true,
