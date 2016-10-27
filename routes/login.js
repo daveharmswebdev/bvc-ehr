@@ -7,4 +7,8 @@ router.get('/api/login', (req,res) => {
 	res.send({})
 })
 
+router.post('/api/login', (req, res) => {
+	res.send({})
+})
+
 module.exports = router

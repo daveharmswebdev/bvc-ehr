@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
       role: 'technician',
       security_level: 1,
       unit: 'B',
-      password: '123'
+      password: '$2a$10$BSU/YkppQ8xByvhU1oP8IOVaRKTU5e1hRCO2nVi8TZD1.U0d9LDg2'
     })
   ]);
 };
