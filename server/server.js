@@ -26,8 +26,25 @@ app.use(session({
   }),
   resave: false,
   saveUninitialized: false,
-  secret: process.env.SESSION_SECRET || 'pizzadescottsupersecretkey',
+  secret: 'pizzadescottsupersecretkey',
+  cookie: {secure:true}
 }))
+
+app.use(express.static('client'))
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+// passport and loading app.locals
+require('./passport-strategies')
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use((req, res, next) => {
+	console.log('req.user', req.user)
+	console.log('req.session', req.session)
+	app.locals.user = req.user && req.user.user_name
+	console.log('the user is', app.locals.user)
+	next()
+})
 
 app.use(({ method, url, headers: { 'user-agent': agent } }, res, next) => {
 	if (process.env.NODE_ENV !== 'testing') {
@@ -37,9 +54,6 @@ app.use(({ method, url, headers: { 'user-agent': agent } }, res, next) => {
   next()
 })
 
-app.use(express.static('client'))
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
 
 // routes
 app.use(routes)
