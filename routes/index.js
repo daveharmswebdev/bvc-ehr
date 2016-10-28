@@ -5,7 +5,6 @@ const router = Router()
 
 // routes
 const login = require('./login')
-const register = require('./register')
 const staff = require('./staff')
 const patient = require('./patient')
 const admit = require('./admit')
@@ -19,7 +18,6 @@ const discharge = require('./discharge')
 const report = require('./report')
 
 // public routes
-router.use(register)
 router.use(login)
 
 // private routes
