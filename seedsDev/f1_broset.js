@@ -11,9 +11,9 @@ exports.seed = function(knex, Promise) {
           user_id: 1,
           confused: true,
           irritable: true,
-          boisterous: true,
+          boisterous: false,
           verbal_threats: false,
-          physical_threats: true,
+          physical_threats: false,
           attacking_furniture: false
         }),
       ]);

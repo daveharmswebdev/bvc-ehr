@@ -10,9 +10,9 @@ exports.seed = function(knex, Promise) {
       confused: true,
       irritable: true,
       boisterous: true,
-      verbal_threats: false,
+      verbal_threats: true,
       physical_threats: true,
-      attacking_furniture: false
+      attacking_furniture: true
     }),
       ]);
 };
