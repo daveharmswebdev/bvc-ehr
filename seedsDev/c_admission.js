@@ -19,9 +19,25 @@ exports.seed = function(knex, Promise) {
             behavioral_health_hx: 'depressed since age 10, one past attempt at age 26.',
             medical_hx: 'type 1 diabetes',
             current_meds: 'prozac insulin',
-            smoker: false
+            smoker: false,
+            room: '202'
           }),
-
+        knex('admission')
+          .insert({
+            patient_id: 2,
+            admission_rn: 1,
+            voluntary_status: 'involuntary',
+            complaint: 'confusion',
+            symptoms: 'depression crying insomnia',
+            suicidal: true,
+            suicidal_plan: 'intentional overdose of narcotic pain medication',
+            homicidal: false,
+            behavioral_health_hx: 'depressed since age 10, one past attempt at age 26.',
+            medical_hx: 'type 1 diabetes',
+            current_meds: 'prozac insulin',
+            smoker: false,
+            room: '203'
+          }),
       ]);
     });
 };

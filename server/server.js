@@ -39,10 +39,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) => {
-	console.log('req.user', req.user)
-	console.log('req.session', req.session)
+	// console.log('req.user', req.user)
+	// console.log('req.session', req.session)
 	app.locals.user = req.user && req.user.user_name
-	console.log('the user is', app.locals.user)
+	// console.log('the user is', app.locals.user)
 	next()
 })
 

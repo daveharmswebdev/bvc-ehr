@@ -44,6 +44,7 @@ exports.up = (knex, Promise) => {
   		table.string('medical_hx')
   		table.string('current_meds')
   		table.boolean('smoker')
+      table.string('room')
   	}),
 
   	knex.schema.createTable('assessment', table => {

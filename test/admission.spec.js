@@ -126,7 +126,8 @@ describe('admit routes', () => {
 				"behavioral_health_hx":"alzheimers",
 				"medical_hx":"CAD CABG",
 				"current_meds":"aspirin",
-				"smoker":"false"
+				"smoker":"false",
+				"room":"202"
 			})
 			.end((err, res) => {
 				res.should.have.status(200)
