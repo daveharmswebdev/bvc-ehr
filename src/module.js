@@ -25,7 +25,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/dashboard.html',
 			controller: 'DashboardCtrl'
 		})
-		.when('/intervention', {
+		.when('/intervention/:admissionId', {
 			templateUrl: './views/intervention.html',
 			controller: 'InterventionCtrl'
 		})
