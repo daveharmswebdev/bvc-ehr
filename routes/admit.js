@@ -8,6 +8,7 @@ const knex = require('knex')(knexConfig)
 // returns all admissions
 router.get('/api/admit', (req, res, next) => {
 	knex('admission')
+		.join('patient', 'admission.patient_id', '=', 'patient.patient_id')
 		.select()
 		.then(admissions => {
 			if (req.body.security < 1) {
