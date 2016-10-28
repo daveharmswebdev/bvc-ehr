@@ -1,9 +1,10 @@
 'use strict'
 
-app.controller('AdmitCtrl', function($scope, $routeParams) {
+app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory) {
 	$scope.admit = () => {
 		let admission = {
 			patient_id: $routeParams.patientId,
+			admission_rn: 1,
 			voluntary_status: $scope.voluntary_status,
 			complaint: $scope.complaint,
 			symptoms: $scope.symptoms,
@@ -18,6 +19,8 @@ app.controller('AdmitCtrl', function($scope, $routeParams) {
 			smoker: $scope.smoker || false
 		}
 
-		console.log('new admit', admission)
+		AdmitFactory
+			.createAdmission(admission)
+			.then(newAdmit => console.log('new admit', newAdmit))
 	}
 })
