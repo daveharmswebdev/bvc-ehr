@@ -1,1 +1,32 @@
-<h1>{{test}}</h1>
+<h1>Medication</h1>
+
+<h2>Enter Medication</h2>
+
+<form method="POST" ng-submit='med()'>
+	<div class="form-group">
+		<label for="medication">Medication</label>
+		<select name="" id="medication" class="form-control" ng-model='medication'>
+			<option value="ativan">ativan</option>
+			<option value="geodon">geodon</option>
+			<option value="haldol">haldol</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="dose">Dose</label>
+		<input type="text" id="dose" class="form-control" ng-model='dose' placeholder="dose">
+	</div>
+	<div class="form-group">
+		<label for="units">Units</label>
+		<input type="text" id="units" class="form-control" ng-model='units' placeholder="units">
+	</div>
+	<div class="form-group">
+		<label for="route">Route</label>
+		<select name="" id="route" class="form-control" ng-model='route'>
+			<option value="po">PO</option>
+			<option value="subcutaneous">Subcutaneous</option>
+			<option value="intramuscular">Intramuscular</option>
+			<option value="intranasal">Intranasal</option>
+		</select>
+	</div>
+	<button class='btn btn-default' type='submit'>Enter</button>
+</form>
