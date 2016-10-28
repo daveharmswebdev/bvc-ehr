@@ -13,7 +13,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/admit.html',
 			controller: 'AdmitCtrl'
 		})
-		.when('/assessment', {
+		.when('/assessment/:admissionId', {
 			templateUrl: './views/assessment.html',
 			controller: 'AssessmentCtrl'
 		})
