@@ -29,7 +29,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/intervention.html',
 			controller: 'InterventionCtrl'
 		})
-		.when('/medication', {
+		.when('/medication/:interventionId', {
 			templateUrl: './views/medication.html',
 			controller: 'MedicationCtrl'
 		})
