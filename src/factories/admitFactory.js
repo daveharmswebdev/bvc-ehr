@@ -12,5 +12,14 @@ app.factory('AdmitFactory', ($q, $http) => {
 		})
 	}
 
+	service.getAdmissions = () => {
+		return $q((resolve, reject) => {
+			$http
+				.get('/api/admit')
+				.success(admissions => resolve(admissions))
+				.error(error => reject(error))
+		})
+	}
+
 	return service
 })

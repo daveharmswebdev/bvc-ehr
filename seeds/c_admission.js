@@ -19,7 +19,8 @@ exports.seed = function(knex, Promise) {
             behavioral_health_hx: 'depressed since age 10, one past attempt at age 26.',
             medical_hx: 'type 1 diabetes',
             current_meds: 'prozac insulin',
-            smoker: false
+            smoker: false,
+            room: '202'
           }),
 
       ]);

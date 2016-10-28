@@ -17,7 +17,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/assessment.html',
 			controller: 'AssessmentCtrl'
 		})
-		.when('/broset/:interventionId', {
+		.when('/broset/:admissionId', {
 			templateUrl: './views/broset.html',
 			controller: 'BrosetScoreCtrl'
 		})

@@ -3,7 +3,7 @@
 app.controller('BrosetScoreCtrl', function($scope, $routeParams) {
 	$scope.score = () => {
 		let newScore = {
-			intervention: parseInt($routeParams.interventionId),
+			intervention: parseInt($routeParams.admissionId),
 			confused: $scope.confused || false,
 			irritable: $scope.irritable || false,
 			boisterous: $scope.boisterous || false,

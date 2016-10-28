@@ -1,14 +1,14 @@
 <h1>Dashboard</h1>
 
 <div class="row" ng-repeat='patient in patients'>
-	<div class="col-sm-1">ROOM</div>
+	<div class="col-sm-1">{{patient.room}}</div>
 	<div class="col-sm-3">{{patient.last_name}}, {{patient.first_name}}</div>
 	<div class="col-sm-3">{{patient.complaint}}</div>
 	<div class="col-sm-1">1</div>
 	<div class="col-sm-1">
-		<button class='btn btn-primary' ng-click='goToAssess()'>Assess</button>
+		<button class='btn btn-primary' ng-click='goToAssess(patient)'>Assess</button>
 	</div>
 	<div class="col-sm-1">
-		<button class='btn btn-primary' ng-click='goToBroset'>Broset</button>
+		<button class='btn btn-primary' ng-click='goToBroset(patient)'>Broset</button>
 	</div>
 </div>
