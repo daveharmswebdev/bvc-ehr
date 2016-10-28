@@ -1,6 +1,7 @@
 'use strict'
 
-app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory) {
+app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory, PatientData) {
+
 	$scope.admit = () => {
 		let admission = {
 			patient_id: $routeParams.patientId,
