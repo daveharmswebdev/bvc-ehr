@@ -51,6 +51,12 @@ app.factory('BrosetData', ($q, $http) => {
 	}
 
 	// service.editScore
+	// service.editScore = (id, newScore) => {
+	// 	return $q((resolve, reject) => {
+	// 		$http
+	// 			.get()
+	// 	})
+	// }
 
 	return service
 })
