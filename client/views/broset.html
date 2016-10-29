@@ -1,7 +1,10 @@
 <h1>Broset</h1>
 
 <ul>
-	<li ng-repeat='score in scores'><a href='{{score.url}}'>{{score.sum}} at {{score.score_time}} by {{score.nurse}}</a></li>
+	<li ng-repeat='score in scores'>
+		<a href='{{score.url}}'>{{score.sum}} at {{score.score_time}} by {{score.nurse}}</a>
+		<span ng-click='deleteScore(score)'>delete</span>
+		</li>
 </ul>
 
 <h2>Enter Broset score</h2>
