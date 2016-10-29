@@ -2,6 +2,10 @@
 
 <h2>Enter Intervention</h2>
 
+<ul>
+	<li ng-repeat='intervention in interventions'>{{intervention.intervention_id}} -- {{intervention.intervention}}</li>
+</ul>
+
 <form method="POST" ng-submit='intervene()'>
 	<div class="form-group">
 		<label for="interventions">Interventions</label>

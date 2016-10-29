@@ -1,6 +1,15 @@
 'use strict'
 
-app.controller('AssessmentCtrl', function($scope, $routeParams) {
+app.controller('AssessmentCtrl', function($scope, $routeParams, AssessmentData) {
+	const displayAssessments = function() {
+		AssessmentData
+			.getAssessmentsByAdmission($routeParams.admissionId)
+			.then(a => {
+				console.log('a', a)
+				$scope.assessments = a
+			})
+	}
+
 	$scope.assess = () => {
 		let assessment = $scope.assessment
 		assessment.oriented_person = $scope.assessment.oriented_person || false
@@ -9,8 +18,17 @@ app.controller('AssessmentCtrl', function($scope, $routeParams) {
 		assessment.oriented_purpose = $scope.assessment.oriented_purpose || false
 		assessment.suicidal = $scope.assessment.suicidal || false
 		assessment.homicidal = $scope.assessment.homicidal || false
+		assessment.nurse_assessing = 1
 		assessment.admission_id = parseInt($routeParams.admissionId)
 
 		console.log('assesment', assessment)
+		AssessmentData
+			.createAssessments(assessment)
+			.then(() => {
+				$scope.assessment = {}
+				displayAssessments()
+			})
 	}
+
+	displayAssessments()
 })

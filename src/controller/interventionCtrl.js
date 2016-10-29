@@ -1,6 +1,16 @@
 'use strict'
 
-app.controller('InterventionCtrl', function($scope, $routeParams) {
+app.controller('InterventionCtrl', function($scope, $routeParams, InterventionData) {
+	const displayInterventions = function() {
+		InterventionData
+			.getInterventionByAdmissionId($routeParams.admissionId)
+			.then(i => {
+				console.log('i', i)
+				$scope.interventions = i
+			})
+	}	
+
+
 	$scope.intervene = () => {
 		let intervention = {
 			admission_id: $routeParams.admissionId,
@@ -10,4 +20,6 @@ app.controller('InterventionCtrl', function($scope, $routeParams) {
 
 		console.log('intervention', intervention)
 	}
+
+	displayInterventions()
 })
