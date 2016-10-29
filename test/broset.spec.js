@@ -130,9 +130,8 @@ describe('broset routes', () => {
 	it('should be able to change a broset score', done => {
 		chai
 			.request(app)
-			.put('/api/broset')
+			.put('/api/broset/3')
 			.send({
-				"broset_id":"3",
 				"physical_threats":"false"
 			})
 			.end((err, res) => {

@@ -51,9 +51,9 @@ router.post('/api/broset', (req, res, next) => {
 		.catch( error => next(error))
 })
 
-router.put('/api/broset', (req, res, next) => {
+router.put('/api/broset/:id', (req, res, next) => {
 	knex('broset')
-		.where('broset_id', req.body.broset_id)
+		.where('broset_id', req.params.id)
 		.update(req.body)
 		.returning('broset_id')
 		.then(id => {
