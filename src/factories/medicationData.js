@@ -4,6 +4,7 @@ app.factory('MedicationData', ($q, $http) => {
 	const service = {}
 
 	service.getMedByInt = intervention => {
+		console.log('intervention', intervention)
 		return $q((resolve, reject) => {
 			$http
 				.get(`/api/medByIntervention/${intervention}`)
