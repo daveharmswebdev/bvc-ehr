@@ -14,6 +14,7 @@ app.controller('InterventionCtrl', function($scope, $routeParams, InterventionDa
 	$scope.intervene = () => {
 		let intervention = {
 			admission_id: $routeParams.admissionId,
+			user_id: 1,
 			intervention: $scope.intervention,
 			intervention_note: $scope.intervention_note
 		}
@@ -25,7 +26,9 @@ app.controller('InterventionCtrl', function($scope, $routeParams, InterventionDa
 				$scope.intervention = ''
 				$scope.intervention_note = ''
 				if (newIntervention.intervention === 'medication') {
-					$location.path(`/medication/${newIntervention.intervention_id}`)
+					$location.path(`/admission/${newIntervention.admission_id}/intervention/${newIntervention.intervention_id}/medication`)
+				} else if (newIntervention.intervention === 'seclusion') {
+					$location.path(`/admission/${newIntervention.admission_id}/intervention/${newIntervention.intervention_id}//seclusion`)
 				} else {
 					displayInterventions()
 				}
