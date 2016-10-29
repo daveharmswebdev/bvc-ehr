@@ -15,12 +15,17 @@ app.factory('BrosetData', ($q, $http) => {
 		return score
 	}
 
+	function getUrl(score) {
+		score.url = `/#/admission/${score.admission_id}/broset/${score.broset_id}/edit`
+		return score
+	}
+
 	service.getScoresByAdmission = admission => {
 		return $q((resolve, reject) => {
 			$http
 				.get(`/api/brosetByAdmission/${admission}`)
 				.success(scores => {
-					scores = scores.map(getBrosetSum)
+					scores = scores.map(getBrosetSum).map(getUrl)
 					resolve(scores)
 				})
 				.error(error => reject(error))
@@ -35,6 +40,23 @@ app.factory('BrosetData', ($q, $http) => {
 				.error(error => reject(error))
 		})
 	}
+
+	service.getSingleScore = id => {
+		return $q((resolve, reject) => {
+			$http
+				.get(`/api/broset/${id}`)
+				.success(score => resolve(score))
+				.error(error => reject(error))
+		})
+	}
+
+	// service.editScore
+	// service.editScore = (id, newScore) => {
+	// 	return $q((resolve, reject) => {
+	// 		$http
+	// 			.get()
+	// 	})
+	// }
 
 	return service
 })

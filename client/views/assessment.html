@@ -1,5 +1,9 @@
 <h1>Assessment</h1>
 
+<ul>
+	<li ng-repeat='assessment in assessments'>Id: {{assessment.assessment_id}} by RN: {{assessment.nurse_assessing}}</li>
+</ul>
+
 <h1>Enter Your Assessment</h1>
 
 <form method="POST" ng-submit='assess()'>
@@ -32,8 +36,8 @@
 		<input id="homicidal" class="form-control" type="checkbox" ng-model="assessment.homicidal">
 	</div>
 	<div class="form-group">
-		<label for="homeicidal_plan">Homicidal Plan</label>
-		<input id="homeicidal_plan" class="form-control" type="text" ng-model="assessment.homeicidal_plan" placeholder="">
+		<label for="homicidal_plan">Homicidal Plan</label>
+		<input id="homicidal_plan" class="form-control" type="text" ng-model="assessment.homicidal_plan" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="visual_hallucinations">Visual Hallucinations</label>

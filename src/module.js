@@ -9,27 +9,31 @@ app.config(function($routeProvider) {
 			templateUrl: './views/login.html',
 			controller: 'LoginCtrl'
 		})
-		.when('/admit/:patientId', {
+		.when('/admission/:patientId', {
 			templateUrl: './views/admit.html',
 			controller: 'AdmitCtrl'
 		})
-		.when('/assessment/:admissionId', {
+		.when('/admission/:admissionId/assessment', {
 			templateUrl: './views/assessment.html',
 			controller: 'AssessmentCtrl'
 		})
-		.when('/broset/:admissionId', {
+		.when('/admission/:admissionId/broset', {
 			templateUrl: './views/broset.html',
 			controller: 'BrosetScoreCtrl'
+		})
+		.when('/admission/:admissionId/broset/:brosetId/edit', {
+			templateUrl: './views/brosetEdit.html',
+			controller: 'EditBrosetScoreCtrl'
 		})
 		.when('/dashboard', {
 			templateUrl: './views/dashboard.html',
 			controller: 'DashboardCtrl'
 		})
-		.when('/intervention/:admissionId', {
+		.when('/admission/:admissionId/intervention', {
 			templateUrl: './views/intervention.html',
 			controller: 'InterventionCtrl'
 		})
-		.when('/medication/:interventionId', {
+		.when('/admission/:admissionId/intervention/:interventionId/medication', {
 			templateUrl: './views/medication.html',
 			controller: 'MedicationCtrl'
 		})
@@ -49,7 +53,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/SafetyCheck.html',
 			controller: 'SafetyCheckCtrl'
 		})
-		.when('/seclusion', {
+		.when('/seclusion/:interventionId', {
 			templateUrl: './views/seclusion.html',
 			controller: 'SeclusionCtrl'
 		})

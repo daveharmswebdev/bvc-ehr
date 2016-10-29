@@ -1,5 +1,9 @@
 <h1>Medication</h1>
 
+<ul>
+	<li ng-repeat='med in medications'>{{med.medication_id}} -- {{med.medication}}</li>
+</ul>
+
 <h2>Enter Medication</h2>
 
 <form method="POST" ng-submit='med()'>
@@ -30,3 +34,4 @@
 	</div>
 	<button class='btn btn-default' type='submit'>Enter</button>
 </form>
+<button class='btn btn-primary' ng-click='goToIntervention()'>Back To Intervention</button>
