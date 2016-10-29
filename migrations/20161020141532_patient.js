@@ -45,6 +45,7 @@ exports.up = (knex, Promise) => {
   		table.string('current_meds')
   		table.boolean('smoker')
       table.string('room')
+      table.timestamp('admitted_at').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('assessment', table => {
@@ -71,7 +72,7 @@ exports.up = (knex, Promise) => {
   		table.integer('nurse_assessing')
   			.references('user_id')
   			.inTable('staff')
-  		table.timestamp('charted_at')
+  		table.timestamp('charted_at').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('discharge', table => {
@@ -91,6 +92,7 @@ exports.up = (knex, Promise) => {
   		table.boolean('homicidal')
   		table.string('homicidal_plan')
   		table.boolean('comprehends_dc_plan')
+      table.timestamp('discharge_time').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('broset', table => {
@@ -107,6 +109,7 @@ exports.up = (knex, Promise) => {
   		table.boolean('verbal_threats')
   		table.boolean('physical_threats')
   		table.boolean('attacking_furniture')
+      table.timestamp('score_time').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('intervention', table => {
@@ -119,6 +122,7 @@ exports.up = (knex, Promise) => {
   			.inTable('staff')
   		table.string('intervention')
   		table.string('intervention_note')
+      table.timestamp('intervention_time').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('medication', table => {
@@ -133,6 +137,7 @@ exports.up = (knex, Promise) => {
   		table.float('dose')
   		table.string('units')
   		table.string('route')
+      table.timestamp('medication_time').defaultTo(knex.fn.now())
   	}),
 
   	knex.schema.createTable('seclusion', table => {
