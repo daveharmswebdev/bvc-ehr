@@ -20,12 +20,26 @@ app.factory('BrosetData', ($q, $http) => {
 		return score
 	}
 
+	function getReadableTimeStamp(score) {
+		score.score_time = new Date(score.score_time).toString().split(' ').slice(1,5).join(' ')
+		return score
+	}
+
+	function getNurse(score) {
+		score.nurse = `${score.last_name}, ${score.first_name} RN`
+		return score
+	}
+
 	service.getScoresByAdmission = admission => {
 		return $q((resolve, reject) => {
 			$http
 				.get(`/api/brosetByAdmission/${admission}`)
 				.success(scores => {
-					scores = scores.map(getBrosetSum).map(getUrl)
+					scores = scores
+						.map(getBrosetSum)
+						.map(getUrl)
+						.map(getReadableTimeStamp)
+						.map(getNurse)
 					resolve(scores)
 				})
 				.error(error => reject(error))
@@ -51,12 +65,18 @@ app.factory('BrosetData', ($q, $http) => {
 	}
 
 	// service.editScore
-	// service.editScore = (id, newScore) => {
-	// 	return $q((resolve, reject) => {
-	// 		$http
-	// 			.get()
-	// 	})
-	// }
+	service.editScore = (id, newScore) => {
+		console.log('newScore', newScore)
+		return $q((resolve, reject) => {
+			$http
+				.put(`/api/broset/${id}`, newScore)
+				.success(score => {
+					console.log('score', score)
+					resolve(score)
+				})
+				.error(error => reject(error))
+		})
+	}
 
 	return service
 })

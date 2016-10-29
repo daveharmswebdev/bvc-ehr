@@ -9,12 +9,12 @@ app.controller('EditBrosetScoreCtrl', ($scope, $routeParams, $location, BrosetDa
 		let newScore = {
 			admission_id: parseInt($routeParams.admissionId),
 			user_id: 1,
-			confused: $scope.confused || false,
-			irritable: $scope.irritable || false,
-			boisterous: $scope.boisterous || false,
-			verbal_threats: $scope.verbal_threats || false,
-			physical_threats: $scope.physical_threats || false,
-			attacking_furniture: $scope.attacking_furniture || false
+			confused: $scope.score.confused || false,
+			irritable: $scope.score.irritable || false,
+			boisterous: $scope.score.boisterous || false,
+			verbal_threats: $scope.score.verbal_threats || false,
+			physical_threats: $scope.score.physical_threats || false,
+			attacking_furniture: $scope.score.attacking_furniture || false
 		}
 
 		BrosetData
