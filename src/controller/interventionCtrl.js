@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('InterventionCtrl', function($scope, $routeParams, InterventionData) {
+app.controller('InterventionCtrl', function($scope, $routeParams, InterventionData, $location) {
 	const displayInterventions = function() {
 		InterventionData
 			.getInterventionByAdmissionId($routeParams.admissionId)
@@ -24,10 +24,11 @@ app.controller('InterventionCtrl', function($scope, $routeParams, InterventionDa
 			.then( newIntervention => {
 				$scope.intervention = ''
 				$scope.intervention_note = ''
-				// if (newIntervention.intervention === 'medication') {
-					
-				// }
-				displayInterventions()
+				if (newIntervention.intervention === 'medication') {
+					$location.path(`/medication/${newIntervention.intervention_id}`)
+				} else {
+					displayInterventions()
+				}
 			})
 	}
 
