@@ -12,7 +12,7 @@ app.factory('InterventionData', ($q, $http) => {
 		})
 	}
 
-	service.createAssessments = submission => {
+	service.createIntervention = submission => {
 		return $q((resolve, reject) => {
 			$http
 				.post('/api/intervention', submission)

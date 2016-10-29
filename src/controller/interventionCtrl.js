@@ -19,6 +19,16 @@ app.controller('InterventionCtrl', function($scope, $routeParams, InterventionDa
 		}
 
 		console.log('intervention', intervention)
+		InterventionData
+			.createIntervention(intervention)
+			.then( newIntervention => {
+				$scope.intervention = ''
+				$scope.intervention_note = ''
+				// if (newIntervention.intervention === 'medication') {
+					
+				// }
+				displayInterventions()
+			})
 	}
 
 	displayInterventions()
