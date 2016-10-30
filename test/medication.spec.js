@@ -128,9 +128,8 @@ describe('medication routes', () => {
 	it('should update a med', done => {
 		chai
 			.request(app)
-			.put('/api/medication')
+			.put('/api/medication/1')
 			.send({
-				"medication_id":"1",
 				"dose": "1.5"
 			})
 			.end((err, res) => {

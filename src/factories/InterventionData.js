@@ -60,5 +60,14 @@ app.factory('InterventionData', ($q, $http) => {
 		})
 	}
 
+	service.deleteById = id => {
+		return $q((resolve, reject) => {
+			$http
+				.delete(`/api/intervention/${id}`)
+				.success(response => resolve(response))
+				.error(error => reject(error))
+		})
+	}
+
 	return service
 })
