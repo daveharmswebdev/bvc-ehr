@@ -16,6 +16,16 @@ router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 		.catch(error => next(error))
 })
 
+router.get('/api/intervention/:id', (req, res, next) => {
+	knex('intervention')
+		.select()
+		.where('intervention_id', req.params.id)
+		.then(intervention => {
+			res.status(200).json(intervention[0])
+		})
+		.catch(error => next(error))
+})
+
 router.post('/api/intervention', (req, res, next) => {
 	knex('intervention')
 		.insert(req.body)

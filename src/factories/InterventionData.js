@@ -21,5 +21,14 @@ app.factory('InterventionData', ($q, $http) => {
 		})
 	}
 
+	service.getSingleIntervention = id => {
+		return $q((resolve, reject) => {
+			$http
+				.get(`/api/intervention/${id}`)
+				.success(intervention => resolve(intervention))
+				.error(error => reject(error))
+		})
+	}
+
 	return service
 })

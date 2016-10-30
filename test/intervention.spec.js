@@ -55,6 +55,28 @@ describe('intervention routes', () => {
 			})
 	})
 
+	it('should return intervention by a single id', done => {
+		chai
+			.request(app)
+			.get('/api/intervention/1')
+			.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('object')
+				res.body.should.have.property('intervention_id')
+				res.body.intervention_id.should.equal(1)
+				res.body.should.have.property('admission_id')
+				res.body.admission_id.should.equal(1)
+				res.body.should.have.property('user_id')
+				res.body.user_id.should.equal(1)
+				res.body.should.have.property('intervention')
+				res.body.intervention.should.equal('medication')
+				res.body.should.have.property('intervention_note')
+				res.body.intervention_note.should.equal('forced medication')
+				done()
+			})			
+	})
+
 	it('should post an intervention', done => {
 		chai
 			.request(app)
