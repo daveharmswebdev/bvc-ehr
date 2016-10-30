@@ -3,7 +3,11 @@
 app.controller('EditInterventionCtrl', ($scope, $routeParams, $location, InterventionData) => {
 	InterventionData
 		.getSingleIntervention($routeParams.interventionId)
-		.then(intervention => $scope.intervention = intervention)
+		.then(intervention => {
+			console.log('intervention', intervention)
+			$scope.intervention = intervention.intervention
+			$scope.intervention_note = intervention.intervention_note
+		})
 
 	$scope.edit = () => {
 		const edit = {

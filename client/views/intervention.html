@@ -3,7 +3,10 @@
 <h2>Enter Intervention</h2>
 
 <ul>
-	<li ng-repeat='intervention in interventions'>{{intervention.intervention_id}} -- {{intervention.intervention}}</li>
+	<li ng-repeat='intervention in interventions'>
+		<a href="{{intervention.url}}">{{intervention.intervention_time}} -- {{intervention.intervention}} -- {{intervention.nurse}}</a>
+		<span ng-click='deleteIntervention'>delete</span>
+	</li>
 </ul>
 
 <form method="POST" ng-submit='intervene()'>

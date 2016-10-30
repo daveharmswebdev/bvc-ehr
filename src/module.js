@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
 			templateUrl: './views/intervention.html',
 			controller: 'InterventionCtrl'
 		})
+		.when('/admission/:admissionId/intervention/:interventionId/edit', {
+			templateUrl: './views/interventionEdit.html',
+			controller: 'EditInterventionCtrl'
+		})
 		.when('/admission/:admissionId/intervention/:interventionId/medication', {
 			templateUrl: './views/medication.html',
 			controller: 'MedicationCtrl'

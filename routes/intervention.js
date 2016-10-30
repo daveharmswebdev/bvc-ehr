@@ -7,6 +7,7 @@ const knex = require('knex')(knexConfig)
 
 router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
 		.select()
 		.orderBy('intervention_id')
 		.where('admission_id', req.params.admissionId)
@@ -18,6 +19,7 @@ router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 
 router.get('/api/intervention/:id', (req, res, next) => {
 	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
 		.select()
 		.where('intervention_id', req.params.id)
 		.then(intervention => {
@@ -39,9 +41,9 @@ router.post('/api/intervention', (req, res, next) => {
 		.catch(error => next(error))
 })
 
-router.put('/api/intervention', (req, res, next) => {
+router.put('/api/intervention/:id', (req, res, next) => {
 	knex('intervention')
-		.where('intervention_id', req.body.intervention_id)
+		.where('intervention_id', req.params.id)
 		.update(req.body)
 		.returning('intervention_id')
 		.then( id => {

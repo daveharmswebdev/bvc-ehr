@@ -109,9 +109,8 @@ describe('intervention routes', () => {
 	it('should be able to update an intervention post', done => {
 		chai
 			.request(app)
-			.put('/api/intervention')
+			.put('/api/intervention/1')
 			.send({
-				"intervention_id": "1",
 				"admission_id": "1",
 				"intervention": "medication",
 				"intervention_note": "patient consented"
