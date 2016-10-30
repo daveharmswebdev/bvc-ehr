@@ -31,6 +31,29 @@ describe('intervention routes', () => {
     });
   });
 
+  it('should return all interventions', done => {
+  	chai
+  		.request(app)
+  		.get('/api/intervention')
+  		.end((err, res) => {
+				res.should.have.status(200)
+				res.should.be.json // jshint ignore:line
+				res.body.should.be.a('array')
+				res.body.length.should.equal(3)
+				res.body[0].should.have.property('intervention_id')
+				res.body[0].intervention_id.should.equal(1)
+				res.body[0].should.have.property('admission_id')
+				res.body[0].admission_id.should.equal(1)
+				res.body[0].should.have.property('user_id')
+				res.body[0].user_id.should.equal(1)
+				res.body[0].should.have.property('intervention')
+				res.body[0].intervention.should.equal('medication')
+				res.body[0].should.have.property('intervention_note')
+				res.body[0].intervention_note.should.equal('forced medication')				
+				done()  			
+  		})
+  })
+
 	it('return interventions with admission_id', (done) => {
 		chai
 			.request(app)
@@ -105,6 +128,27 @@ describe('intervention routes', () => {
 				done()
 			})
 	})
+
+  it('should be able to del intervention by id', done => {
+    chai
+      .request(app)
+      .delete('/api/intervention/3')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/intervention')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(2)
+            done()            
+          })  
+      })
+  }) 
 
 	it('should be able to update an intervention post', done => {
 		chai

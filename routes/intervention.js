@@ -5,6 +5,17 @@ const router = Router()
 const { knexConfig } = require('../config')
 const knex = require('knex')(knexConfig)
 
+router.get('/api/intervention', (req, res, next) => {
+	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
+		.select()
+		.orderBy('intervention_id')
+		.then(interventions => {
+			res.status(200).json(interventions)
+		})
+		.catch(error => next(error))		
+})
+
 router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 	knex('intervention')
 		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
@@ -37,6 +48,16 @@ router.post('/api/intervention', (req, res, next) => {
 				.select()
 				.where('intervention_id', id[0])
 				.then( intervention => res.status(200).json(intervention[0]))
+		})
+		.catch(error => next(error))
+})
+
+router.delete('/api/intervention/:id', (req, res, next) => {
+	knex('intervention')
+		.del()
+		.where('intervention_id', req.params.id)
+		.then(response => {
+			res.status(200).json(response)
 		})
 		.catch(error => next(error))
 })
