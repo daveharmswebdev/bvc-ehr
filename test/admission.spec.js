@@ -40,7 +40,7 @@ describe('admit routes', () => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('array')
-				res.body.length.should.equal(1)
+				res.body.length.should.equal(2)
 				res.body[0].admission_id.should.equal(1)
 				res.body[0].patient_id.should.equal(1)
 				res.body[0].admission_rn.should.equal(1)
@@ -115,7 +115,6 @@ describe('admit routes', () => {
 			.request(app)
 			.post('/api/admit')
 			.send({
-				"admission_id":"2",
 				"patient_id":"1",
 				"admission_rn":"1",
 				"voluntary_status":"voluntary-dpoa",
@@ -133,7 +132,7 @@ describe('admit routes', () => {
 				res.should.have.status(200)
 				res.should.be.json // jshint ignore:line
 				res.body.should.be.a('object')
-				res.body.admission_id.should.equal(2)
+				res.body.admission_id.should.equal(3)
 				res.body.patient_id.should.equal(1)
 				res.body.admission_rn.should.equal(1)
 				res.body.voluntary_status.should.equal('voluntary-dpoa')
@@ -183,43 +182,26 @@ describe('admit routes', () => {
 			})	
 	})
 
-	it('should error when posting without patient', done => {
-		chai
-			.request(app)
-			.post('/api/patient')
-			.send({
-				"admission_id":"2",
-				"patient_id":"1000",
-				"admission_rn":"1",
-				"voluntary_status":"voluntary-dpoa",
-				"complaint":"combative behavior secondary to alzheimers",
-				"symptoms":"a,b,c",
-				"suicidal":"false",
-				"homicidal":"false",
-				"behavioral_health_hx":"alzheimers",
-				"medical_hx":"CAD CABG",
-				"current_meds":"aspirin",
-				"smoker":"false"
-			})
-			.end((err, res) => {
-				res.should.have.status(500)
-				done()
-			})
-	})
-
-	it('should error when updating with improper data type', done => {
-		chai
-			.request(app)
-			.put('/api/patient/1')
-			.send({
-				"current_meds":"prozac",
-				"smoker":"smokes two packs a day"
-			})
-			.end((err, res) => {
-				res.should.have.status(500)
-				done()				
-			})
-	})
+  it('should be able to delete an admission by id', done => {
+    chai
+      .request(app)
+      .delete('/api/admit/2')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/admit')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(1)
+            done()            
+          })  
+      })    
+  })   
 
 })
 

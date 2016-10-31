@@ -10,6 +10,7 @@ router.get('/api/admit', (req, res, next) => {
 	knex('admission')
 		.join('patient', 'admission.patient_id', '=', 'patient.patient_id')
 		.select()
+		.orderBy('admission_id')
 		.then(admissions => {
 			if (req.body.security < 1) {
 				return next('unauthorized')
@@ -47,6 +48,16 @@ router.post('/api/admit', (req, res, next) => {
 				})
 		})
 		.catch( error => next(error))
+})
+
+router.delete('/api/admit/:id', (req, res, next) => {
+	knex('admission')
+		.del()
+		.where('admission_id', req.params.id)
+		.then(admission => {
+			res.status(200).json(admission)
+		})
+		.catch(error => next(error))
 })
 
 router.put('/api/admit/:id', (req, res, next) => {
