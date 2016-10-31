@@ -16,4 +16,7 @@ app.controller('DashboardCtrl', function($scope, $location, AdmitFactory) {
 		console.log(patient.admission_id)
 		$location.path(`/admission/${patient.admission_id}/broset`)
 	}
+	$scope.goToIntervention = patient => {
+		$location.path(`/admission/${patient.admission_id}/intervention`)
+	}
 })

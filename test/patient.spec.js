@@ -40,7 +40,7 @@ describe('patient routes', () => {
         res.should.have.status(200)
         res.should.be.json // jshint ignore:line
         res.body.should.be.a('array')
-        res.body.length.should.equal(1)
+        res.body.length.should.equal(2)
         res.body[0].patient_id.should.equal(1)
         res.body[0].last_name.should.equal('White')
         res.body[0].first_name.should.equal('Barry')
@@ -78,7 +78,6 @@ describe('patient routes', () => {
       .request(app)
       .post('/api/patient')
       .send({
-        "patient_id":"2",
         "last_name":"Brown",
         "first_name":"James",
         "middle_initial":"K",
@@ -92,7 +91,7 @@ describe('patient routes', () => {
         res.should.have.status(200)
         res.should.be.json // jshint ignore:line
         res.body.should.be.a('object')
-        res.body.patient_id.should.equal(2)
+        res.body.patient_id.should.equal(3)
         res.body.last_name.should.equal('Brown')
         res.body.first_name.should.equal('James')
         res.body.middle_initial.should.equal('K')
@@ -126,7 +125,28 @@ describe('patient routes', () => {
         res.body.zip.should.equal('88888')
         done()        
       })
-  })    
+  }) 
+
+  it('should be able to delete a patient by id', done => {
+    chai
+      .request(app)
+      .delete('/api/patient/2')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.should.be.json // jshint ignore:line
+        res.body.should.equal(1)    
+        chai
+          .request(app)
+          .get('/api/patient')
+          .end((err,res) => {
+            res.should.have.status(200)
+            res.should.be.json // jshint ignore:line
+            res.body.should.be.a('array')
+            res.body.length.should.equal(1)
+            done()            
+          })  
+      })    
+  })   
 
 })
 
