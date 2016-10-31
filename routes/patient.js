@@ -40,6 +40,16 @@ router.post('/api/patient', (req, res, next) => {
 		.catch( error => next(error))
 })
 
+router.delete('/api/patient/:id', (req, res, next) => {
+	knex('patient')
+		.del()
+		.where('patient_id', req.params.id)
+		.then(patient => {
+			res.status(200).json(patient)
+		})
+		.catch(error => next(error))
+})
+
 router.put('/api/patient/:id', (req, res, next) => {
 	knex('patient')
 		.where('patient_id', req.params.id)
@@ -53,6 +63,5 @@ router.put('/api/patient/:id', (req, res, next) => {
 		})
 		.catch(error => next(error))
 })
-
 
 module.exports = router
