@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
 			templateUrl: './views/login.html',
 			controller: 'LoginCtrl'
 		})
-		.when('/admission/:patientId', {
+		.when('/admission', {
 			templateUrl: './views/admit.html',
 			controller: 'AdmitCtrl'
 		})

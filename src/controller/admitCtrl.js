@@ -1,10 +1,18 @@
 'use strict'
 
 app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory, PatientData) {
+	// populate patient dropdown
+	PatientData
+		.getPatients()
+		.then(patients => {
+			console.log('patients', patients)
+			$scope.patients = patients
+			console.log('$scope.patients', $scope.patients)
+		})
 
 	$scope.admit = () => {
 		let admission = {
-			patient_id: $routeParams.patientId,
+			patient_id: $scope.patientToBeAdmitted,
 			admission_rn: 1,
 			voluntary_status: $scope.voluntary_status,
 			complaint: $scope.complaint,
