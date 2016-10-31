@@ -30,5 +30,10 @@ app.controller('AssessmentCtrl', function($scope, $routeParams, AssessmentData) 
 			})
 	}
 
+	$scope.deleteAssessment = assessment => 
+		AssessmentData
+			.deleteById(assessment.assessment_id)
+			.then(() => displayAssessments())
+
 	displayAssessments()
 })

@@ -7,6 +7,7 @@ const knex = require('knex')(knexConfig)
 
 router.get('/api/assess', (req, res, next) => {
 	knex('assessment')
+		.join('staff', 'assessment.nurse_assessing', '=', 'staff.user_id')
 		.select()
 		.orderBy('assessment_id')
 		.then(assessment => res.status(200).json(assessment))
@@ -15,6 +16,7 @@ router.get('/api/assess', (req, res, next) => {
 
 router.get('/api/assess/:id', (req, res, next) => {
 	knex('assessment')
+		.join('staff', 'assessment.nurse_assessing', '=', 'staff.user_id')
 		.select()
 		.where('assessment_id', req.params.id)
 		.orderBy('assessment_id')
@@ -24,6 +26,7 @@ router.get('/api/assess/:id', (req, res, next) => {
 
 router.get('/api/assessmentsByAdmissionId/:id', (req, res, next) => {
 	knex('assessment')
+		.join('staff', 'assessment.nurse_assessing', '=', 'staff.user_id')
 		.select()
 		.where('admission_id', req.params.id)
 		.orderBy('assessment_id')
@@ -46,9 +49,9 @@ router.post('/api/assess', (req, res, next) => {
 		})
 })
 
-router.put('/api/assess', (req, res, next) => {
+router.put('/api/assess/:id', (req, res, next) => {
 	knex('assessment')
-		.where('assessment_id', req.body.assessment_id)
+		.where('assessment_id', req.params.id)
 		.update(req.body)
 		.returning('assessment_id')
 		.then(id => {

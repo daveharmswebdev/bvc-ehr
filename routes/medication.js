@@ -7,6 +7,7 @@ const knex = require('knex')(knexConfig)
 
 router.get('/api/medication', (req, res, next) => {
 	knex('medication')
+		.join('staff', 'medication.user_id', '=', 'staff.user_id')
 		.select()
 		.orderBy('medication_id')
 		.then(meds => {
@@ -17,6 +18,7 @@ router.get('/api/medication', (req, res, next) => {
 
 router.get('/api/medication/:id', (req, res, next) => {
 	knex('medication')
+		.join('staff', 'medication.user_id', '=', 'staff.user_id')
 		.select()
 		.where('medication_id', req.params.id)
 		.then(med => {
@@ -26,11 +28,14 @@ router.get('/api/medication/:id', (req, res, next) => {
 })
 
 router.get('/api/medByIntervention/:interventionId', (req, res, next) => {
+	console.log('req.params', req.params.interventionId)
 	knex('medication')
+		.join('staff', 'medication.user_id', '=', 'staff.user_id')
 		.select()
 		.where('intervention_id', req.params.interventionId)
 		.orderBy('medication_id')
 		.then(med => {
+			console.log('med', med)
 			res.status(200).json(med)
 		})
 		.catch(error => next(error))
@@ -51,9 +56,9 @@ router.post('/api/medication', (req, res, next) => {
 		})
 })
 
-router.put('/api/medication', (req, res, next) => {
+router.put('/api/medication/:id', (req, res, next) => {
 	knex('medication')
-		.where('medication_id', req.body.medication_id)
+		.where('medication_id', req.params.id)
 		.update(req.body)
 		.returning('medication_id')
 		.then(id => {

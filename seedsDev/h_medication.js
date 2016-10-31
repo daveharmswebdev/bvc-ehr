@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
           medication: 'ativan',
           dose: 2,
           units: 'mg',
-          route: 'sub-cutaneous'
+          route: 'subcutaneous'
         }),
       ]);
     });

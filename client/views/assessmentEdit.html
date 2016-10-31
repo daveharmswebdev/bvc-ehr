@@ -1,15 +1,8 @@
 <h1>Assessment</h1>
 
-<ul>
-	<li ng-repeat='assessment in assessments'>
-		<a href="{{assessment.url}}">{{assessment.charted_at}} by {{assessment.nurse}}</a>
-		<span ng-click='deleteAssessment(assessment)'>Delete</span>
-	</li>
-</ul>
+<h1>Edit Your Assessment</h1>
 
-<h1>Enter Your Assessment</h1>
-
-<form method="POST" ng-submit='assess()'>
+<form method="PUT" ng-submit='edit()'>
 	<div class="form-group">
 		<label for="oriented_person">Oriented To Person</label>
 		<input id="oriented_person" class="form-control" type="checkbox" ng-model="assessment.oriented_person">
@@ -74,5 +67,5 @@
 		<label for="speech">Speech</label>
 		<input id="speech" class="form-control" type="text" ng-model="assessment.speech" placeholder="">
 	</div>
-	<button class='btn btn-default' type='submit'>Assess</button>
+	<button class='btn btn-default' type='submit'>Edit</button>
 </form>

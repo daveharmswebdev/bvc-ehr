@@ -17,6 +17,10 @@ app.config(function($routeProvider) {
 			templateUrl: './views/assessment.html',
 			controller: 'AssessmentCtrl'
 		})
+		.when('/admission/:admissionId/assessment/:assessmentId/edit', {
+			templateUrl: './views/assessmentEdit.html',
+			controller: 'EditAssessmentCtrl'
+		})
 		.when('/admission/:admissionId/broset', {
 			templateUrl: './views/broset.html',
 			controller: 'BrosetScoreCtrl'
@@ -33,9 +37,17 @@ app.config(function($routeProvider) {
 			templateUrl: './views/intervention.html',
 			controller: 'InterventionCtrl'
 		})
+		.when('/admission/:admissionId/intervention/:interventionId/edit', {
+			templateUrl: './views/interventionEdit.html',
+			controller: 'EditInterventionCtrl'
+		})
 		.when('/admission/:admissionId/intervention/:interventionId/medication', {
 			templateUrl: './views/medication.html',
 			controller: 'MedicationCtrl'
+		})
+		.when('/admission/:admissionId/intervention/:interventionId/medication/:medicationId', {
+			templateUrl: './views/medicationEdit.html',
+			controller: 'EditMedicationCtrl'
 		})
 		.when('/newPatient', {
 			templateUrl: './views/newPatient.html',

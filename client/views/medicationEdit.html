@@ -1,15 +1,8 @@
 <h1>Medication</h1>
 
-<ul>
-	<li ng-repeat='med in medications'>
-		<a href="{{med.url}}">{{med.medication_time}} -- {{med.medDoseRoute}} -- {{med.nurse}}</a>
-		<span ng-click='deleteMed(med)'>Delete</span>
-	</li>
-</ul>
+<h2>Edit Medication</h2>
 
-<h2>Enter Medication</h2>
-
-<form method="POST" ng-submit='med()'>
+<form method="POST" ng-submit='edit()'>
 	<div class="form-group">
 		<label for="medication">Medication</label>
 		<select name="" id="medication" class="form-control" ng-model='medication'>
@@ -35,6 +28,5 @@
 			<option value="intranasal">Intranasal</option>
 		</select>
 	</div>
-	<button class='btn btn-default' type='submit'>Enter</button>
+	<button class='btn btn-default' type='submit'>Edit</button>
 </form>
-<button class='btn btn-primary' ng-click='goToIntervention()'>Back To Intervention</button>

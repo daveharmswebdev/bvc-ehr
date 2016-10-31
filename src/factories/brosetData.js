@@ -78,5 +78,14 @@ app.factory('BrosetData', ($q, $http) => {
 		})
 	}
 
+	service.deleteById = id => {
+		return $q((resolve, reject) => {
+			$http
+				.delete(`/api/broset/${id}`)
+				.success(response => resolve(response))
+				.error(error => reject(error))
+		})
+	}
+
 	return service
 })

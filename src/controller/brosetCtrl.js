@@ -39,5 +39,13 @@ app.controller('BrosetScoreCtrl', function($scope, $routeParams, BrosetData) {
 			})
 	}
 
+	$scope.deleteScore = score => 
+		BrosetData
+			.deleteById(score.broset_id)
+			.then(response => {
+				console.log('response from delete', response)
+				displayScores()
+			})
+
 	displayScores()
 })

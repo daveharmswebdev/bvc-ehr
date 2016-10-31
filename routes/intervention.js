@@ -5,13 +5,36 @@ const router = Router()
 const { knexConfig } = require('../config')
 const knex = require('knex')(knexConfig)
 
+router.get('/api/intervention', (req, res, next) => {
+	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
+		.select()
+		.orderBy('intervention_id')
+		.then(interventions => {
+			res.status(200).json(interventions)
+		})
+		.catch(error => next(error))		
+})
+
 router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
 		.select()
 		.orderBy('intervention_id')
 		.where('admission_id', req.params.admissionId)
 		.then(interventions => {
 			res.status(200).json(interventions)
+		})
+		.catch(error => next(error))
+})
+
+router.get('/api/intervention/:id', (req, res, next) => {
+	knex('intervention')
+		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
+		.select()
+		.where('intervention_id', req.params.id)
+		.then(intervention => {
+			res.status(200).json(intervention[0])
 		})
 		.catch(error => next(error))
 })
@@ -29,9 +52,19 @@ router.post('/api/intervention', (req, res, next) => {
 		.catch(error => next(error))
 })
 
-router.put('/api/intervention', (req, res, next) => {
+router.delete('/api/intervention/:id', (req, res, next) => {
 	knex('intervention')
-		.where('intervention_id', req.body.intervention_id)
+		.del()
+		.where('intervention_id', req.params.id)
+		.then(response => {
+			res.status(200).json(response)
+		})
+		.catch(error => next(error))
+})
+
+router.put('/api/intervention/:id', (req, res, next) => {
+	knex('intervention')
+		.where('intervention_id', req.params.id)
 		.update(req.body)
 		.returning('intervention_id')
 		.then( id => {

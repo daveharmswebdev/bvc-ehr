@@ -185,9 +185,8 @@ describe('assess routes', () => {
 	it('should be able to updated an assessment', done => {
 		chai
 			.request(app)
-			.put('/api/assess')
+			.put('/api/assess/1')
 			.send({
-				"assessment_id":"1",
 				"homicidal":"false",
 				"homicidal_plan": "now denies homicidal ideations"
 			})
