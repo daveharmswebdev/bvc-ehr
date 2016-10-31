@@ -69,5 +69,14 @@ app.factory('MedicationData', ($q, $http) => {
 		})
 	}
 
+	service.deleteById = id => {
+		return $q((resolve, reject) => {
+			$http
+				.delete(`/api/medication/${id}`)
+				.success(response => resolve(response))
+				.error(error => reject(error))
+		})
+	}
+
 	return service
 })

@@ -3,7 +3,7 @@
 <ul>
 	<li ng-repeat='med in medications'>
 		<a href="{{med.url}}">{{med.medication_time}} -- {{med.medDoseRoute}} -- {{med.nurse}}</a>
-		<span ng-click='deleteMed(med)'></span>
+		<span ng-click='deleteMed(med)'>Delete</span>
 	</li>
 </ul>
 

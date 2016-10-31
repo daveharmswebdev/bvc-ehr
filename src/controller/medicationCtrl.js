@@ -37,6 +37,12 @@ app.controller('MedicationCtrl', function($scope, $routeParams, $location, Medic
 			})
 	}
 
+	$scope.deleteMed = med => {
+		MedicationData
+			.deleteById(med.medication_id)
+			.then(() => displayMeds())
+	}
+
 	$scope.goToIntervention = () => 
 		$location.path(`/intervention/${$routeParams.interventionId}`)
 
