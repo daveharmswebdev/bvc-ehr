@@ -1,22 +1,31 @@
 'use strict'
 
 app.controller('DashboardCtrl', function($scope, $location, AdmitFactory) {
-	AdmitFactory
-		.getAdmissions()
-		.then( admissions => {
-			console.log('admissions', admissions)
-			$scope.patients = admissions
-		})
+	function displayAdmissions() {
+		AdmitFactory
+			.getAdmissions()
+			.then( admissions => {
+				console.log('admissions', admissions)
+				$scope.admissions = admissions
+			})
+	}
 
-	$scope.goToAssess = patient => {
-		console.log('patient assess', patient)
-		$location.path(`/admission/${patient.admission_id}/assessment`)
+	$scope.goToAssess = admission => {
+		console.log('admission assess', admission)
+		$location.path(`/admission/${admission.admission_id}/assessment`)
 	}
-	$scope.goToBroset = patient => {
-		console.log(patient.admission_id)
-		$location.path(`/admission/${patient.admission_id}/broset`)
+	$scope.goToBroset = admission => {
+		console.log(admission.admission_id)
+		$location.path(`/admission/${admission.admission_id}/broset`)
 	}
-	$scope.goToIntervention = patient => {
-		$location.path(`/admission/${patient.admission_id}/intervention`)
+	$scope.goToIntervention = admission => {
+		$location.path(`/admission/${admission.admission_id}/intervention`)
 	}
+	$scope.deleteAdmission = admission => {
+		AdmitFactory
+			.deleteById(admission.admission_id)
+			.then(() => displayAdmissions())
+	}
+
+	displayAdmissions()
 })
