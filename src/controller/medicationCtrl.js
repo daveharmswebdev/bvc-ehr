@@ -43,9 +43,10 @@ app.controller('MedicationCtrl', function($scope, $routeParams, $location, Medic
 			.then(() => displayMeds())
 	}
 
-	$scope.goToIntervention = () => 
+	$scope.goToIntervention = () => {
 		console.log('$routeParms', $routeParams.admissionId)
 		$location.path(`/admission/${$routeParams.admissionId}/intervention/`)
+	}
 
 	displayMeds()
 })
