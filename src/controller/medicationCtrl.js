@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('MedicationCtrl', function($scope, $routeParams, $location, MedicationData) {
+app.controller('MedicationCtrl', function($scope, $routeParams, $location, MedicationData, $localStorage) {
 	function addAdmissionPrefix(med) {
 		med.url = `/#/admission/${$routeParams.admissionId}${med.url}`
 		return med
@@ -17,7 +17,7 @@ app.controller('MedicationCtrl', function($scope, $routeParams, $location, Medic
 	$scope.med = () => {
 		let medication = {
 			intervention_id: $routeParams.interventionId,
-			user_id: 1,
+			user_id: $localStorage.user.user_id,
 			medication: $scope.medication,
 			dose: $scope.dose,
 			units: $scope.units,
@@ -44,7 +44,8 @@ app.controller('MedicationCtrl', function($scope, $routeParams, $location, Medic
 	}
 
 	$scope.goToIntervention = () => 
-		$location.path(`/intervention/${$routeParams.interventionId}`)
+		console.log('$routeParms', $routeParams.admissionId)
+		$location.path(`/admission/${$routeParams.admissionId}/intervention/`)
 
 	displayMeds()
 })

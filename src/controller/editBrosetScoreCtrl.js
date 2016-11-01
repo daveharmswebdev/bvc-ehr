@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('EditBrosetScoreCtrl', ($scope, $routeParams, $location, BrosetData) => {
+app.controller('EditBrosetScoreCtrl', ($scope, $routeParams, $location, BrosetData, $localStorage) => {
 	BrosetData
 		.getSingleScore($routeParams.brosetId)
 		.then(score => $scope.score = score)
@@ -8,7 +8,7 @@ app.controller('EditBrosetScoreCtrl', ($scope, $routeParams, $location, BrosetDa
 	$scope.edit = () => {
 		let newScore = {
 			admission_id: parseInt($routeParams.admissionId),
-			user_id: 1,
+			user_id: $localStorage.user.user_id,
 			confused: $scope.score.confused || false,
 			irritable: $scope.score.irritable || false,
 			boisterous: $scope.score.boisterous || false,

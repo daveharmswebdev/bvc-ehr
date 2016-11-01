@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('EditAssessmentCtrl', ($scope, $routeParams, $location, AssessmentData) => {
+app.controller('EditAssessmentCtrl', ($scope, $routeParams, $location, AssessmentData, $localStorage) => {
 	AssessmentData
 		.getSingleAssessment($routeParams.assessmentId)
 		.then(assessment => {
@@ -26,7 +26,7 @@ app.controller('EditAssessmentCtrl', ($scope, $routeParams, $location, Assessmen
 				appetite: $scope.assessment.appetite,
 				appearance: $scope.assessment.appearance,
 				speech: $scope.assessment.speech,
-				nurse_assessing: 1,		
+				nurse_assessing: $localStorage.user.user_id,		
 			}
 
 			AssessmentData

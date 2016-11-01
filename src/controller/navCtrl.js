@@ -1,6 +1,8 @@
 'use strict'
 
-app.controller('NavCtrl', ($scope) => {
+app.controller('NavCtrl', ($scope, $localStorage) => {
+	$scope.currentUser = ($localStorage.user.user_name) ? $localStorage.user.user_name : 'No User Logged In'
+
 	$scope.navItems = [
 		{
 			name: "Logout",
