@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Broset Violence Checklist Electronic Health Reacord",
   "main": "index.js",
+  "engines": {
+    "node": 6
+  },
   "scripts": {
     "test": "NODE_ENV=testing ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "postinstall": "bower install",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
