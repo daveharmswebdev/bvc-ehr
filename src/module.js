@@ -1,6 +1,6 @@
 'use strict'
 
-const app = angular.module('bvcehr', ['ngRoute'])
+const app = angular.module('bvcehr', ['ngRoute', 'ngStorage'])
 
 app.config(function($routeProvider) {
 

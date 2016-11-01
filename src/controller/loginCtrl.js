@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('LoginCtrl', function($scope, $http) {
+app.controller('LoginCtrl', function($scope, $http, $localStorage) {
 	$scope.login = function() {
 		let credentials = {
 			user_name: $scope.username,
@@ -11,7 +11,8 @@ app.controller('LoginCtrl', function($scope, $http) {
 		$http
 			.post('/api/login', credentials)
 			.then(res => {
-				console.log('login res', res)
+				$localStorage.user = res.data
+				console.log('local storage', $localStorage.user)
 			})
 			.catch(console.error)
 	}

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('EditMedicationCtrl', ($scope, $routeParams, $location, MedicationData) => {
+app.controller('EditMedicationCtrl', ($scope, $routeParams, $location, MedicationData, $localStorage) => {
 	MedicationData
 		.getSingleMed($routeParams.medicationId)
 		.then(med => {
@@ -17,7 +17,8 @@ app.controller('EditMedicationCtrl', ($scope, $routeParams, $location, Medicatio
 			medication: $scope.medication,
 			dose: $scope.dose,
 			units: $scope.units,
-			route: $scope.route
+			route: $scope.route,
+			user_id: $localStorage.user.user_id
 		}
 
 		MedicationData

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('BrosetScoreCtrl', function($scope, $routeParams, BrosetData) {
+app.controller('BrosetScoreCtrl', function($scope, $routeParams, BrosetData, $localStorage) {
 	const displayScores = function() {
 		BrosetData
 			.getScoresByAdmission($routeParams.admissionId)
@@ -22,7 +22,7 @@ app.controller('BrosetScoreCtrl', function($scope, $routeParams, BrosetData) {
 	$scope.score = () => {
 		let newScore = {
 			admission_id: parseInt($routeParams.admissionId),
-			user_id: 1,
+			user_id: $localStorage.user.user_id,
 			confused: $scope.confused || false,
 			irritable: $scope.irritable || false,
 			boisterous: $scope.boisterous || false,
