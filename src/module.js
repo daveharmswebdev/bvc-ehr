@@ -53,9 +53,9 @@ app.config(function($routeProvider) {
 			templateUrl: './views/newPatient.html',
 			controller: 'NewPatientCtrl'
 		})
-		.when('/note', {
-			templateUrl: './views/note.html',
-			controller: 'NoteCtrl'
+		.when('/report/:admissionId', {
+			templateUrl: './views/report.html',
+			controller: 'ReportCtrl'
 		})
 		.when('/patient', {
 			templateUrl: './views/patient.html',

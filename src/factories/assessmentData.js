@@ -18,6 +18,17 @@ app.factory('AssessmentData', ($q, $http) => {
 		assessment.nurse = `${assessment.last_name}, ${assessment.first_name} RN`
 		return assessment
 	}
+
+	function getHallucinationsSummary(assessment) {
+		let content = []
+		if (assessment.visual_hallucinations !== null) content.push(`Visual Hallucinations: ${assessment.visual_hallucinations}.`)
+		if (assessment.audio_hallucinations !== null) content.push(`Audio Hallucinations: ${assessment.audio_hallucinations}.`)
+		if (assessment.tactile_hallucinations !== null) content.push(`Tactile Hallucinations: ${assessment.tactile_hallucinations}.`)
+		if (assessment.hallucination_comments !== null) content.push(`Hallucination Comments: ${assessment.hallucination_comments}.`)
+		assessment.hallucinations_summary = content.join(' ')
+		return assessment
+	}
+
 	service.getAssessmentsByAdmission = admission => {
 		return $q((resolve, reject) => {
 			$http
@@ -27,6 +38,7 @@ app.factory('AssessmentData', ($q, $http) => {
 						.map(getUrl)
 						.map(getReadableTimeStamp)
 						.map(getNurse)
+						.map(getHallucinationsSummary)
 					resolve(assessment)
 				})
 				.error(error => reject(error))
