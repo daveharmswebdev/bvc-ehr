@@ -1,0 +1,71 @@
+<h1>Report</h1>
+<section>
+	<div class="row patient">
+		<div class="col-sm-6">{{patient.fullName}}</div>
+		<div class="col-sm-6">{{patient.room}}</div>
+	</div>
+	<div class="row patient">
+		<div class="col-sm-6">Complaint: {{patient.complaint}}</div>
+		<div class="col-sm-6">{{patient.admittingMD}}</div>
+	</div>
+</section>
+<br>
+<section ng-repeat='broset in scores'>
+	<div class="row broset">
+		<div class="col-sm-4">Confused: {{broset.confused}}</div>
+		<div class="col-sm-4">Irritable: {{broset.irritable}}</div>
+		<div class="col-sm-4">Boisterous: {{broset.boisterous}}</div>
+	</div>
+	<div class="row broset">
+		<div class="col-sm-4">Verbal Threats: {{broset.verbal_threats}}</div>
+		<div class="col-sm-4">Physical Threats: {{broset.physical_threats}}</div>
+		<div class="col-sm-4">Attacking Furniture: {{broset.attacking_furniture}}</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">Score: {{broset.sum}}</div>
+		<div class="col-sm-4">Nurse: {{broset.nurse}}</div>
+		<div class="col-sm-4">Time: {{broset.score_time}}</div>
+	</div>
+	<br>
+</section>
+<br>
+<section ng-repeat='item in assessments'>
+	<h4>Orientation</h4>
+	<div class="row ao">
+		<div class="col-sm-3">Person: {{item.oriented_person}}</div>
+		<div class="col-sm-3">Place: {{item.oriented_place}}</div>
+		<div class="col-sm-3">Time: {{item.oriented_time}}</div>
+		<div class="col-sm-3">Purpose: {{item.oriented_purpose}}</div>
+	</div>
+	<br>
+	<div class="row si">
+		<div class="col-sm-3">Suicidal: {{item.suicidal}}</div>
+		<div class="col-sm-9">Suicidal Plan: {{item.suicidal_plan}}</div>
+	</div>
+	<br>
+	<div class="row hi">
+		<div class="col-sm-3">Homicidal: {{item.homicidal}}</div>
+		<div class="col-sm-9">Homicidal Plan: {{item.homicidal_plan}}</div>
+	</div>
+	<br>
+	<div class="row hallucinations">
+		<div class="col-sm-6 col-sm-offset-3">{{item.hallucinations_summary}}</div>
+	</div>
+	<div class="assessmentEnd">
+		<p>Affect: {{item.affect}}</p>
+		<p>Appettite: {{item.appetite}}</p>
+		<p>Appearance: {{item.appearance}}</p>
+		<p>Speech: {{item.speech}}</p>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+

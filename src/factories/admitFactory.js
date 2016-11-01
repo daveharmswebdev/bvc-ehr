@@ -3,6 +3,19 @@
 app.factory('AdmitFactory', ($q, $http) => {
 	const service = {}
 
+	function getFullName(patient) {
+		patient.fullName = `${patient.last_name}, ${patient.first_name} ${patient.middle_initial}`
+		return patient
+	}
+
+	function sortByFullName(a, b) {
+		a = a.fullName.toUpperCase()
+		b = b.fullName.toUpperCase()
+		if (a < b) return -1
+		if (a > b) return 1
+		return 0
+  }
+
 	service.createAdmission = admission => {
 		return $q((resolve, reject) => {
 			$http
@@ -17,6 +30,18 @@ app.factory('AdmitFactory', ($q, $http) => {
 			$http
 				.get('/api/admit')
 				.success(admissions => resolve(admissions))
+				.error(error => reject(error))
+		})
+	}
+
+	service.getAdmissionById = id => {
+		return $q((resolve, reject) => {
+			$http
+				.get(`/api/admit/${id}`)
+				.success(admit => {
+					admit = getFullName(admit)
+					resolve(admit)
+				})
 				.error(error => reject(error))
 		})
 	}

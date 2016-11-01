@@ -23,13 +23,14 @@ router.get('/api/admit', (req, res, next) => {
 // returns admission based on id
 router.get('/api/admit/:id', (req, res, next) => {
 	knex('admission')
+		.join('patient', 'admission.patient_id', '=', 'patient.patient_id')
 		.select()
 		.where('admission_id', req.params.id)
-		.then(admissions => {
+		.then(admission => {
 			if (req.body.security < 1) {
 				return next('unauthorized')
 			}
-			res.status(200).json(admissions)
+			res.status(200).json(admission[0])
 		})
 		.catch(next)
 })
