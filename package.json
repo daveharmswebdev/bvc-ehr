@@ -9,7 +9,7 @@
   "scripts": {
     "test": "NODE_ENV=testing ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "postinstall": "bower install && gulp js",
+    "postinstall": "bower install && gulp default",
     "start": "node server/server.js"
   },
   "repository": {
