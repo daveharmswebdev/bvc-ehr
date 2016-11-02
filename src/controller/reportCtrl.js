@@ -18,6 +18,7 @@ app.controller(
 		AssessmentData
 			.getAssessmentsByAdmission($routeParams.admissionId)
 			.then(assessments => {
+				console.log('assessments', assessments)
 				$scope.assessments = assessments 
 			})
 	})

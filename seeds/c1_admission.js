@@ -11,6 +11,7 @@ exports.seed = function(knex, Promise) {
             patient_id: 1,
             admission_rn: 1,
             voluntary_status: 'voluntary',
+            admitting_md: 'Dr. Smith',
             complaint: 'suicidal ideation',
             symptoms: 'depression crying insomnia',
             suicidal: true,

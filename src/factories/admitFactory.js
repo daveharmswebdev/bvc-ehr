@@ -16,6 +16,11 @@ app.factory('AdmitFactory', ($q, $http) => {
 		return 0
   }
 
+  function getReportUrl(patient) {
+  	patient.report_url = `/#/report/${patient.admission_id}`
+  	return patient
+  }
+
 	service.createAdmission = admission => {
 		return $q((resolve, reject) => {
 			$http
@@ -29,7 +34,10 @@ app.factory('AdmitFactory', ($q, $http) => {
 		return $q((resolve, reject) => {
 			$http
 				.get('/api/admit')
-				.success(admissions => resolve(admissions))
+				.success(admissions => {
+					admissions = admissions.map(getReportUrl)
+					resolve(admissions)
+				})
 				.error(error => reject(error))
 		})
 	}
