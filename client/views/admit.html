@@ -5,57 +5,61 @@
 <form method="POST" ng-submit='admit()'>
 	<div class="form-group">
 		<label for="patientToBeAdmitted">Patient</label>
-		<select name="" id="patientToBeAdmitted" class='form-control' ng-model='patientToBeAdmitted'>
+		<select name="" id="patientToBeAdmitted" class='form-control ehr-input' ng-model='patientToBeAdmitted'>
 			<option value="{{pt.patient_id}}" ng-repeat='pt in patients'>{{pt.last_name}}, {{pt.first_name}} {{pt.middle_initial}}</option>
 		</select>
 	</div>
 	<div class="form-group">
 		<label for="voluntary_status">voluntary_status</label>
-		<input id="voluntary_status" class="form-control" type="text" ng-model="voluntary_status" placeholder="">
+		<input id="voluntary_status" class="form-control ehr-input" type="text" ng-model="voluntary_status" placeholder="">
+	</div>
+	<div class="form-group">
+		<label for="admitting_md">Admitting MD</label>
+		<input id="admitting_md" class="form-control ehr-input" type="text" ng-model="admitting_md" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="complaint">complaint</label>
-		<input id="complaint" class="form-control" type="text" ng-model="complaint" placeholder="">
+		<input id="complaint" class="form-control ehr-input" type="text" ng-model="complaint" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="symptoms">symptoms</label>
-		<input id="symptoms" class="form-control" type="text" ng-model="symptoms" placeholder="">
+		<input id="symptoms" class="form-control ehr-input" type="text" ng-model="symptoms" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="suicidal">suicidal</label>
-		<input id="suicidal" class="form-control" type="checkbox" ng-model="suicidal" placeholder="">
+		<input id="suicidal" class="form-control ehr-input" type="checkbox" ng-model="suicidal" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="suicidal_plan">suicidal_plan</label>
-		<input id="suicidal_plan" class="form-control" type="text" ng-model="suicidal_plan" placeholder="">
+		<input id="suicidal_plan" class="form-control ehr-input" type="text" ng-model="suicidal_plan" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="homicidal">homicidal</label>
-		<input id="homicidal" class="form-control" type="checkbox" ng-model="homicidal" placeholder="">
+		<input id="homicidal" class="form-control ehr-input" type="checkbox" ng-model="homicidal" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="homicidal_who">homicidal_who</label>
-		<input id="homicidal_who" class="form-control" type="text" ng-model="homicidal_who" placeholder="">
+		<input id="homicidal_who" class="form-control ehr-input" type="text" ng-model="homicidal_who" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="homicidal_plan">homicidal_plan</label>
-		<input id="homicidal_plan" class="form-control" type="text" ng-model="homicidal_plan" placeholder="">
+		<input id="homicidal_plan" class="form-control ehr-input" type="text" ng-model="homicidal_plan" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="behavioral_health_hx">behavioral_health_hx</label>
-		<input id="behavioral_health_hx" class="form-control" type="text" ng-model="behavioral_health_hx" placeholder="">
+		<input id="behavioral_health_hx" class="form-control ehr-input" type="text" ng-model="behavioral_health_hx" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="medical_hx">medical_hx</label>
-		<input id="medical_hx" class="form-control" type="text" ng-model="medical_hx" placeholder="">
+		<input id="medical_hx" class="form-control ehr-input" type="text" ng-model="medical_hx" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="current_meds">current_meds</label>
-		<input id="current_meds" class="form-control" type="text" ng-model="current_meds" placeholder="">
+		<input id="current_meds" class="form-control ehr-input" type="text" ng-model="current_meds" placeholder="">
 	</div>
 	<div class="form-group">
 		<label for="smoker">smoker</label>
-		<input id="smoker" class="form-control" type="checkbox" ng-model="smoker" placeholder="">
+		<input id="smoker" class="form-control ehr-input" type="checkbox" ng-model="smoker" placeholder="">
 	</div>
 		
 	<button class="btn btn-default" type="submit">Admit</button>

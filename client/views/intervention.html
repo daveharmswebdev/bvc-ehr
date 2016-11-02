@@ -12,7 +12,7 @@
 <form method="POST" ng-submit='intervene()'>
 	<div class="form-group">
 		<label for="interventions">Interventions</label>
-		<select id="interventions" class="form-control" ng-model='intervention'>
+		<select id="interventions" class="form-control ehr-input" ng-model='intervention'>
 			<option value="counseling">counseling</option>
 			<option value="medication">medication</option>
 			<option value="seclusion">seclusion</option>
@@ -20,7 +20,7 @@
 	</div>
 	<div class="form-group">
 		<label for="intervention_note">Intervention Note</label>
-		<input id="intervention_note" class="form-control" type="text" ng-model="intervention_note" placeholder="note" ng-model='intervention_note'>
+		<input id="intervention_note" class="form-control ehr-input" type="text" ng-model="intervention_note" placeholder="note" ng-model='intervention_note'>
 	</div>
 	<button class="btn btn-default" type="submit">Post</button>
 </form>

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory, PatientData) {
+app.controller('AdmitCtrl', function($scope, $routeParams, $location, AdmitFactory, PatientData) {
 	// populate patient dropdown
 	PatientData
 		.getPatients()
@@ -15,6 +15,7 @@ app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory, Patient
 			patient_id: $scope.patientToBeAdmitted,
 			admission_rn: 1,
 			voluntary_status: $scope.voluntary_status,
+			admitting_md: $scope.admitting_md,
 			complaint: $scope.complaint,
 			symptoms: $scope.symptoms,
 			suicidal: $scope.suicidal || false,
@@ -30,6 +31,9 @@ app.controller('AdmitCtrl', function($scope, $routeParams, AdmitFactory, Patient
 
 		AdmitFactory
 			.createAdmission(admission)
-			.then(newAdmit => console.log('new admit', newAdmit))
+			.then(newAdmit => {
+				console.log('new admit', newAdmit)
+				$location.path('/dashboard')
+			})
 	}
 })
