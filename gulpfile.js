@@ -8,6 +8,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const ngAnnotate = require('gulp-ng-annotate')
 const sass = require('gulp-sass')
 const gutil = require('gulp-util')
+const notify = require('gulp-notify')
 
 const handleError = function(task) {
   return function(err) {

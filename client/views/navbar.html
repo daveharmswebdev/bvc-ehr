@@ -1,10 +1,10 @@
-<div class="container " ng-controller="NavCtrl">
+<div class="container ehr-nav" ng-controller="NavCtrl">
   <nav class="navbar navbar-default">
 	 	<div class="container-fluid">
 			<div class="nav-wrapper">
-					<h3 class="currentUser">{{currentUser}}</h3>
+					<h2 class="currentUser">User: {{currentUser}}</h2>
 					<ul id="nav-mobile" class="nav navbar-nav navbar-right" ng-repeat="item in navItems">
-						<li role="presentation"><a href="{{item.url}}">{{item.name}}</a></li>
+						<li role="presentation"><a class='ehr-nav-link' href="{{item.url}}">{{item.name}}</a></li>
 					</ul>
 				</div>
 	 	</div>

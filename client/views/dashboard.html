@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 
-<div class="row" ng-repeat='admission in admissions'>
+<div class="row dashboard" ng-repeat='admission in admissions'>
 	<div class="col-sm-1 col-sm-offset-1">{{admission.room}}</div>
 	<div class="col-sm-2">{{admission.last_name}}, {{admission.first_name}}</div>
 	<div class="col-sm-2">{{admission.complaint}}</div>
@@ -15,6 +15,6 @@
 		<p class='action' ng-click='goToIntervention(admission)'>Intervention</p>
 	</div>
 	<div class="col-sm-1">
-		<p class='action' ng-click='deleteAdmission(admission)'>Delete</p>
+		<p class='delete' ng-click='deleteAdmission(admission)'>Delete</p>
 	</div>
 </div>
