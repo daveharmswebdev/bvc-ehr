@@ -1,3 +1,58 @@
+// google fonts
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+$Inconsolata: 'Inconsolata', monospace;
+
+// colors
+$color-primary-0: #104F87;	// Main Primary color */
+$color-primary-1: #4478A7;	// lightest
+$color-primary-2: #27649C;  // lighter
+$color-primary-3: #083E6E;  // darker
+$color-primary-4: #042E54;  // darkest
+
 body {
-	background-color: orange;
+	background-color: $color-primary-3;
+}
+
+.inconsolata {
+	font-family: $Inconsolata;
+	color: $color-primary-1
+}
+
+.ehr-nav-link {
+	font-size: 2rem;
+}
+
+.dashboard {
+	.action {
+		color: white;
+	}
+
+	.delete {
+		color: red;
+	}
+
+	p:hover {
+		cursor: pointer;
+	}
+}
+
+.assessment {
+	span {
+		color: red;
+	}
+
+	a:hover {
+		color:white;
+	}
+}
+
+label {
+	font-size: 2rem;
+}
+
+.ehr-input {
+	border: 5px solid black;
+	color: black;
+	border-radius: 0px;
 }
