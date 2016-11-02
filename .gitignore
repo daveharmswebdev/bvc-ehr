@@ -39,3 +39,6 @@ jspm_packages
 # bower files
 client/lib
 client/js/app.js
+
+# compliled style.css from sass
+client/css/style.css

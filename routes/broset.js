@@ -44,6 +44,7 @@ router.post('/api/broset', (req, res, next) => {
 		.insert(req.body)
 		.returning('broset_id')
 		.then( id => {
+			console.log('id', id)
 			knex('broset')
 				.select()
 				.where('broset_id', id[0])
