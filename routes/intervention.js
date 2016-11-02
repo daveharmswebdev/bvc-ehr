@@ -19,8 +19,9 @@ router.get('/api/intervention', (req, res, next) => {
 router.get('/api/interventionByAdmission/:admissionId', (req, res, next) => {
 	knex('intervention')
 		.join('staff', 'intervention.user_id', '=', 'staff.user_id')
+		.leftJoin('medication', 'intervention.intervention_id', '=', 'medication.intervention_id')
 		.select()
-		.orderBy('intervention_id')
+		.orderBy('intervention.intervention_id')
 		.where('admission_id', req.params.admissionId)
 		.then(interventions => {
 			res.status(200).json(interventions)

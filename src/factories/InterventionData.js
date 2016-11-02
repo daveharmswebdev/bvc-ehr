@@ -18,6 +18,15 @@ app.factory('InterventionData', ($q, $http) => {
 		return intervention
 	}
 
+	function getMedString(intervention) {
+		if (intervention.medication_id === null) {
+			return intervention
+		} else {
+			intervention.medString = `${intervention.dose}${intervention.units} ${intervention.medication} ${intervention.route}`
+			return intervention
+		}
+	}
+
 	service.getInterventionByAdmissionId = admission => {
 		return $q((resolve, reject) => {
 			$http
@@ -26,7 +35,8 @@ app.factory('InterventionData', ($q, $http) => {
 					intervention = intervention
 						.map(getUrl)
 						.map(getReadableTimeStamp)
-						.map(getNurse)	
+						.map(getNurse)
+						.map(getMedString)	
 					resolve(intervention)
 				})
 				.error(error => reject(error))

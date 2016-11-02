@@ -65,6 +65,17 @@
 		<p>Speech: {{item.speech}}</p>
 	</div>
 </section>
+<br>
+<h3>Interventions</h3>
+<section ng-repeat='inter in interventions'>
+	<div class="row intervention">
+		<div class="col-sm-3">{{inter.intervention_time}}</div>
+		<div class="col-sm-3">{{inter.nurse}}</div>
+		<div class="col-sm-3">{{inter.intervention}}</div>
+		<div class="col-sm-3">{{inter.medString}}</div>
+	</div>
+	<div>{{inter.intervention_note}}</div>
+</section>
 
 
 

@@ -2,7 +2,7 @@
 
 app.controller(
 	'ReportCtrl',
-	($scope, $routeParams, AdmitFactory, BrosetData, AssessmentData) => {
+	($scope, $routeParams, AdmitFactory, BrosetData, AssessmentData, InterventionData) => {
 		AdmitFactory
 			.getAdmissionById($routeParams.admissionId)
 			.then(admission => {
@@ -21,4 +21,12 @@ app.controller(
 				console.log('assessments', assessments)
 				$scope.assessments = assessments 
 			})
+
+		InterventionData
+			.getInterventionByAdmissionId($routeParams.admissionId)
+			.then(interventions => {
+				console.log('interventions', interventions)
+				$scope.interventions = interventions
+			})
+
 	})
