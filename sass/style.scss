@@ -10,6 +10,18 @@ $color-primary-2: #27649C;  // lighter
 $color-primary-3: #083E6E;  // darker
 $color-primary-4: #042E54;  // darkest
 
+$color-secondary-1-0: #D1A10B;	// Main Secondary color (1) */
+$color-secondary-1-1: #FFD85D;
+$color-secondary-1-2: #F0C22F;
+$color-secondary-1-3: #AA8100;
+$color-secondary-1-4: #816200;
+
+$color-secondary-2-0: #D1480B;	// Main Secondary color (2) */
+$color-secondary-2-1: #FF8F5D;
+$color-secondary-2-2: #F06B2F;
+$color-secondary-2-3: #AA3500;
+$color-secondary-2-4: #812800;
+
 body {
 	background-color: $color-primary-3;
 }
@@ -25,11 +37,19 @@ body {
 
 .dashboard {
 	.action {
-		color: white;
+		color: $color-secondary-1-0;
+	}
+
+	.action:hover {
+		color: $color-secondary-1-1;
 	}
 
 	.delete {
-		color: red;
+		color: $color-secondary-2-0;
+	}
+
+	.delete:hover {
+		color: $color-secondary-2-1;
 	}
 
 	p:hover {
@@ -55,4 +75,8 @@ label {
 	border: 5px solid black;
 	color: black;
 	border-radius: 0px;
+}
+
+.double-font {
+	font-size: 2rem;
 }

@@ -32,6 +32,7 @@ exports.up = (knex, Promise) => {
   		table.increments('admission_id')
   		table.integer('patient_id').references('patient_id').inTable('patient')
   		table.integer('admission_rn').references('user_id').inTable('staff')
+      table.string('admitting_md')
   		table.string('voluntary_status')
   		table.string('complaint')
   		table.string('symptoms')
