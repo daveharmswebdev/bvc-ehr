@@ -4,9 +4,7 @@ const passport = require('passport')
 
 function trimUser(user) {
 	const trimmedUser = {
-		user_id: user.user_id,
 		user_name: user.user_name,
-		security_level: user.security_level
 	}
 	return trimmedUser
 }

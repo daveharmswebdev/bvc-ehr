@@ -56,8 +56,10 @@ router.get('/api/intervention/:id', (req, res, next) => {
 })
 
 router.post('/api/intervention', (req, res, next) => {
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const intervention = Object.assign({}, req.body, { user_id: postId })
 	knex('intervention')
-		.insert(req.body)
+		.insert(intervention)
 		.returning('intervention_id')
 		.then( id => {
 			knex('intervention')
@@ -79,9 +81,11 @@ router.delete('/api/intervention/:id', (req, res, next) => {
 })
 
 router.put('/api/intervention/:id', (req, res, next) => {
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const intervention = Object.assign({}, req.body, { user_id: postId })
 	knex('intervention')
 		.where('intervention_id', req.params.id)
-		.update(req.body)
+		.update(intervention)
 		.returning('intervention_id')
 		.then( id => {
 			knex('intervention')

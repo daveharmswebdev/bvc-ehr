@@ -107,7 +107,6 @@ describe('intervention routes', () => {
 			.send({
 				"intervention_id": "4",
 				"admission_id": "1",
-				"user_id": "1",
 				"intervention": "counseling",
 				"intervention_note": "denies violent thoughts"
 			})

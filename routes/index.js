@@ -5,6 +5,7 @@ const router = Router()
 
 // routes
 const login = require('./login')
+const logout = require('./logout')
 const staff = require('./staff')
 const patient = require('./patient')
 const admit = require('./admit')
@@ -17,6 +18,7 @@ const report = require('./report')
 
 // public routes
 router.use(login)
+router.use(logout)
 
 // private routes
 router.use(staff)

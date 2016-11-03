@@ -35,7 +35,8 @@ router.get('/api/assessmentsByAdmissionId/:id', (req, res, next) => {
 })
 
 router.post('/api/assess', (req, res, next) => {
-	const assessment = Object.assign({}, req.body, { nurse_assessing: req.user.user_id })
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const assessment = Object.assign({}, req.body, { nurse_assessing: postId })
 	knex('assessment')
 		.insert(assessment)
 		.returning('assessment_id')
@@ -51,7 +52,8 @@ router.post('/api/assess', (req, res, next) => {
 })
 
 router.put('/api/assess/:id', (req, res, next) => {
-	const edit = Object.assign({}, req.body, { nurse_assessing: req.user.user_id})
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const edit = Object.assign({}, req.body, { nurse_assessing: postId })
 	knex('assessment')
 		.where('assessment_id', req.params.id)
 		.update(edit)
