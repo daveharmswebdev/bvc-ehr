@@ -40,8 +40,9 @@ router.get('/api/brosetByAdmission/:admissionId', (req, res, next) => {
 })
 
 router.post('/api/broset', (req, res, next) => {
+	const score = Object.assign({}, req.body, { user_id: req.user.user_id })
 	knex('broset')
-		.insert(req.body)
+		.insert(score)
 		.returning('broset_id')
 		.then( id => {
 			console.log('id', id)
@@ -56,9 +57,10 @@ router.post('/api/broset', (req, res, next) => {
 })
 
 router.put('/api/broset/:id', (req, res, next) => {
+	const score = Object.assign({}, req.body, { user_id: req.user.user_id })
 	knex('broset')
 		.where('broset_id', req.params.id)
-		.update(req.body)
+		.update(score)
 		.returning('broset_id')
 		.then(id => {
 			knex('broset')

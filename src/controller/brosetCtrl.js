@@ -22,7 +22,6 @@ app.controller('BrosetScoreCtrl', function($scope, $routeParams, BrosetData, $lo
 	$scope.score = () => {
 		let newScore = {
 			admission_id: parseInt($routeParams.admissionId),
-			user_id: $localStorage.user.user_id,
 			confused: $scope.confused || false,
 			irritable: $scope.irritable || false,
 			boisterous: $scope.boisterous || false,

@@ -37,9 +37,9 @@ router.get('/api/admit/:id', (req, res, next) => {
 
 
 router.post('/api/admit', (req, res, next) => {
-	console.log('req.body', req.body)
+	const newAdmit = Object.assign({}, req.body, {admission_rn: req.user.user_id})
 	knex('admission')
-		.insert(req.body)
+		.insert(newAdmit)
 		.returning('admission_id')
 		.then( id => {
 			knex('admission')

@@ -13,7 +13,6 @@ app.controller('AdmitCtrl', function($localStorage, $scope, $routeParams, $locat
 	$scope.admit = () => {
 		let admission = {
 			patient_id: $scope.patientToBeAdmitted,
-			admission_rn: $localStorage.user.user_id,
 			voluntary_status: $scope.voluntary_status,
 			admitting_md: $scope.admitting_md,
 			complaint: $scope.complaint,
