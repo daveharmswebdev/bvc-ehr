@@ -7,6 +7,10 @@ app.controller('NavCtrl', ($rootScope, $scope, $localStorage) => {
 
 	$scope.navItems = [
 		{
+			name: "Register",
+			url: '#/register'
+		},
+		{
 			name: "Logout",
 			url: "#/logout"
 		},

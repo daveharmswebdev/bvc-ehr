@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('RegisterCtrl', function($scope, $http) {
+app.controller('RegisterCtrl', function($scope, $http, $location) {
 	$scope.reg = function() {
 		let staff = {
 			user_name: $scope.userName,
@@ -18,6 +18,7 @@ app.controller('RegisterCtrl', function($scope, $http) {
 			.post('/api/staff', staff)
 			.then(res => {
 				console.log('res', res)
+				$location.path('/login')
 			})
 			.catch(console.error)
 	}
