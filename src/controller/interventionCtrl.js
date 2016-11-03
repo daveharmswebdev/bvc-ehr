@@ -37,13 +37,14 @@ app.controller('InterventionCtrl', function($scope, $routeParams, InterventionDa
 			})
 	}
 
-	$scope.deleteIntervention = intervention =>
+	$scope.deleteIntervention = intervention => {
+		console.log('intervention', intervention)
 		InterventionData
-			.deleteById(intervention.intervention_id)
+			.deleteById(intervention)
 			.then(response => {
 				console.log('response from delete', response)
 				displayInterventions()
 			})
-
+	}
 	displayInterventions()
 })
