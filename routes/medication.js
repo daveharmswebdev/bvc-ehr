@@ -28,22 +28,22 @@ router.get('/api/medication/:id', (req, res, next) => {
 })
 
 router.get('/api/medByIntervention/:interventionId', (req, res, next) => {
-	console.log('req.params', req.params.interventionId)
 	knex('medication')
 		.join('staff', 'medication.user_id', '=', 'staff.user_id')
 		.select()
 		.where('intervention_id', req.params.interventionId)
 		.orderBy('medication_id')
 		.then(med => {
-			console.log('med', med)
 			res.status(200).json(med)
 		})
 		.catch(error => next(error))
 })
 
 router.post('/api/medication', (req, res, next) => {
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const med = Object.assign({}, req.body, {user_id: postId})
 	knex('medication')
-		.insert(req.body)
+		.insert(med)
 		.returning('medication_id')
 		.then(id => {
 			knex('medication')
@@ -57,9 +57,11 @@ router.post('/api/medication', (req, res, next) => {
 })
 
 router.put('/api/medication/:id', (req, res, next) => {
+	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
+	const med = Object.assign({}, req.body, {user_id: postId})
 	knex('medication')
 		.where('medication_id', req.params.id)
-		.update(req.body)
+		.update(med)
 		.returning('medication_id')
 		.then(id => {
 			knex('medication')

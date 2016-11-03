@@ -13,7 +13,6 @@ const assess = require('./assess')
 const broset = require('./broset')
 const intervention = require('./intervention')
 const medication = require('./medication')
-const discharge = require('./discharge')
 const report = require('./report')
 
 // public routes
@@ -28,7 +27,6 @@ router.use(assess)
 router.use(broset)
 router.use(intervention)
 router.use(medication)
-router.use(discharge)
 router.use(report)
 
 module.exports = router

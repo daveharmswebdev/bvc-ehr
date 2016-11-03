@@ -38,7 +38,6 @@ router.get('/api/admit/:id', (req, res, next) => {
 
 router.post('/api/admit', (req, res, next) => {
 	const postId = process.env.NODE_ENV === 'testing' ? 1 : req.user.user_id
-	// const newAdmit = Object.assign({}, req.body, {admission_rn: req.user.user_id})
 	const newAdmit = Object.assign({}, req.body, {admission_rn: postId})
 	knex('admission')
 		.insert(newAdmit)
