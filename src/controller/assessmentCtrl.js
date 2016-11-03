@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AssessmentCtrl', function($scope, $routeParams, AssessmentData, $localStorage) {
+app.controller('AssessmentCtrl', function($localStorage, $scope, $routeParams, AssessmentData) {
 	const displayAssessments = function() {
 		AssessmentData
 			.getAssessmentsByAdmission($routeParams.admissionId)
