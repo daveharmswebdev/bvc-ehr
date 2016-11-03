@@ -26,7 +26,6 @@ app.controller('EditAssessmentCtrl', ($scope, $routeParams, $location, Assessmen
 				appetite: $scope.assessment.appetite,
 				appearance: $scope.assessment.appearance,
 				speech: $scope.assessment.speech,
-				nurse_assessing: $localStorage.user.user_id,		
 			}
 
 			AssessmentData

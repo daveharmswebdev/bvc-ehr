@@ -22,7 +22,6 @@ app.factory('AdmitFactory', ($q, $http) => {
   }
 
 	service.createAdmission = admission => {
-		console.log('factory', admission)
 		return $q((resolve, reject) => {
 			$http
 				.post('/api/admit', admission)

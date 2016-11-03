@@ -113,7 +113,6 @@ describe('admit routes', () => {
 			.post('/api/admit')
 			.send({
 				"patient_id":"1",
-				"admission_rn":"1",
 				"voluntary_status":"voluntary-dpoa",
 				"complaint":"combative behavior secondary to alzheimers",
 				"symptoms":"a,b,c",

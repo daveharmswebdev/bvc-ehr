@@ -25,9 +25,9 @@ app.use(session({
     url: process.env.REDIS_URL || 'redis://localhost:6379',
   }),
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   secret: 'pizzadescottsupersecretkey',
-  cookie: {secure:true}
+  cookie: {secure: process.env.NODE_ENV === 'production'}
 }))
 
 app.use(express.static('client'))
@@ -41,7 +41,7 @@ app.use(passport.session())
 app.use((req, res, next) => {
 	// console.log('req.user', req.user)
 	// console.log('req.session', req.session)
-	app.locals.user = req.user && req.user.user_name
+	// app.locals.user = req.user && req.user.user_name
 	// console.log('the user is', app.locals.user)
 	next()
 })

@@ -97,7 +97,6 @@ describe('medication routes', () => {
 			.send({
 				"medication_id": "2",
 				"intervention_id": "1",
-				"user_id": "1",
 				"medication": "lortab 5/325",
 				"dose": "1",
 				"units": "tab",

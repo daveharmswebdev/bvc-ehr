@@ -18,7 +18,6 @@ app.controller('AssessmentCtrl', function($localStorage, $scope, $routeParams, A
 		assessment.oriented_purpose = $scope.assessment.oriented_purpose || false
 		assessment.suicidal = $scope.assessment.suicidal || false
 		assessment.homicidal = $scope.assessment.homicidal || false
-		assessment.nurse_assessing = $localStorage.user.user_id
 		assessment.admission_id = parseInt($routeParams.admissionId)
 
 		console.log('assesment', assessment)
