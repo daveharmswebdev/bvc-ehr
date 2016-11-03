@@ -27,7 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   secret: 'davesecretkey',
-  cookie: {secure: process.env.NODE_ENV === 'production'}
+  // cookie: {secure: process.env.NODE_ENV === 'production'}
 }))
 
 app.use(express.static('client'))
