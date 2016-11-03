@@ -51,7 +51,6 @@ describe('admit routes', () => {
 				res.body[0].suicidal_plan.should.equal('intentional overdose of narcotic pain medication')
 				res.body[0].homicidal.should.equal(false)
 				expect(res.body[0].homicidal_who).to.be.null // jshint ignore:line
-				expect(res.body[0].homicidal_plan).to.be.undefined // jshint ignore:line
 				res.body[0].behavioral_health_hx.should.equal('depressed since age 10, one past attempt at age 26.')
 				res.body[0].medical_hx.should.equal('type 1 diabetes')
 				res.body[0].current_meds.should.equal('prozac insulin')
@@ -89,7 +88,6 @@ describe('admit routes', () => {
 				res.body.suicidal_plan.should.equal('intentional overdose of narcotic pain medication')
 				res.body.homicidal.should.equal(false)
 				expect(res.body.homicidal_who).to.be.null // jshint ignore:line
-				expect(res.body.homicidal_plan).to.be.undefined // jshint ignore:line
 				res.body.behavioral_health_hx.should.equal('depressed since age 10, one past attempt at age 26.')
 				res.body.medical_hx.should.equal('type 1 diabetes')
 				res.body.current_meds.should.equal('prozac insulin')
@@ -141,7 +139,6 @@ describe('admit routes', () => {
 				expect(res.body.suicidal_plan).to.be.null // jshint ignore:line
 				res.body.homicidal.should.equal(false)
 				expect(res.body.homicidal_who).to.be.null // jshint ignore:line
-				expect(res.body.homicidal_plan).to.be.undefined // jshint ignore:line
 				res.body.behavioral_health_hx.should.equal('alzheimers')
 				res.body.medical_hx.should.equal('CAD CABG')
 				res.body.current_meds.should.equal('aspirin')
@@ -172,7 +169,6 @@ describe('admit routes', () => {
 				res.body.suicidal_plan.should.equal('intentional overdose of narcotic pain medication')
 				res.body.homicidal.should.equal(false)
 				expect(res.body.homicidal_who).to.be.null // jshint ignore:line
-				expect(res.body.homicidal_plan).to.be.undefined // jshint ignore:line
 				res.body.behavioral_health_hx.should.equal('depressed since age 10, one past attempt at age 26.')
 				res.body.medical_hx.should.equal('type 1 diabetes')
 				res.body.current_meds.should.equal('prozac')

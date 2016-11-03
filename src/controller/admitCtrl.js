@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AdmitCtrl', function($scope, $routeParams, $location, AdmitFactory, PatientData) {
+app.controller('AdmitCtrl', function($rootScope, $scope, $routeParams, $location, AdmitFactory, PatientData) {
 	// populate patient dropdown
 	PatientData
 		.getPatients()
@@ -13,7 +13,7 @@ app.controller('AdmitCtrl', function($scope, $routeParams, $location, AdmitFacto
 	$scope.admit = () => {
 		let admission = {
 			patient_id: $scope.patientToBeAdmitted,
-			admission_rn: 1,
+			admission_rn: $rootScope.currentUser,
 			voluntary_status: $scope.voluntary_status,
 			admitting_md: $scope.admitting_md,
 			complaint: $scope.complaint,
@@ -26,6 +26,7 @@ app.controller('AdmitCtrl', function($scope, $routeParams, $location, AdmitFacto
 			behavioral_health_hx: $scope.behavioral_health_hx,
 			medical_hx: $scope.medical_hx,
 			current_meds: $scope.current_meds,
+			room: $scope.room,
 			smoker: $scope.smoker || false
 		}
 

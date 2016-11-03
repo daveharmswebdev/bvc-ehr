@@ -40,7 +40,7 @@ exports.up = (knex, Promise) => {
   		table.string('suicidal_plan')
   		table.boolean('homicidal')
   		table.string('homicidal_who')
-  		table.string('homidical_plan')
+  		table.string('homicidal_plan')
   		table.string('behavioral_health_hx')
   		table.string('medical_hx')
   		table.string('current_meds')

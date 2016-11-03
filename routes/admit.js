@@ -37,6 +37,7 @@ router.get('/api/admit/:id', (req, res, next) => {
 
 
 router.post('/api/admit', (req, res, next) => {
+	console.log('req.body', req.body)
 	knex('admission')
 		.insert(req.body)
 		.returning('admission_id')
