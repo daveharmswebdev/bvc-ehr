@@ -17,7 +17,7 @@ app.controller('MedicationCtrl', function($scope, $routeParams, $location, Medic
 	$scope.med = () => {
 		let medication = {
 			intervention_id: $routeParams.interventionId,
-			user_id: $localStorage,
+			user_id: $localStorage.user.user_id,
 			medication: $scope.medication,
 			dose: $scope.dose,
 			units: $scope.units,
