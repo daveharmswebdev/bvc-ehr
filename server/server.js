@@ -38,13 +38,13 @@ require('./passport-strategies')
 app.use(passport.initialize())
 app.use(passport.session())
 
-// app.use((req, res, next) => {
+app.use((req, res, next) => {
 	// console.log('req.user', req.user)
 	// console.log('req.session', req.session)
-	// app.locals.user = req.user && req.user.user_name
+	app.locals.user = req.session && req.session.user_name
 	// console.log('the user is', app.locals.user)
-	// next()
-// })
+	next()
+})
 
 app.use(({ method, url, headers: { 'user-agent': agent } }, res, next) => {
 	if (process.env.NODE_ENV !== 'testing') {
