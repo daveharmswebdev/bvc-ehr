@@ -5,7 +5,7 @@
 <ul>
 	<li ng-repeat='intervention in interventions'>
 		<a href="{{intervention.url}}">{{intervention.intervention_time}} -- {{intervention.intervention}} -- {{intervention.nurse}}</a>
-		<span ng-click='deleteIntervention(intervention)'>delete</span>
+		<span ng-click='deleteIntervention(intervention.intervention_id)'>delete</span>
 	</li>
 </ul>
 
