@@ -15,6 +15,7 @@ module.exports.create = (req, res, next) => {
 		if (!user) { return next('did not authenticate')}
 		console.log('no error and we have a user', user)
 		req.logIn(user, err => {
+			console.log('req.user from create', req.user)
 			if (err) { return next(err) }
 			return res.status(200).json(trimUser(user))
 		})
