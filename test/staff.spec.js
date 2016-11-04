@@ -120,26 +120,26 @@ describe('staff routes', () => {
       })
   })
 
-    it('should error with redundant user', done => {
-    chai
-      .request(app)
-      .post('/api/staff')
-      .send({
-        "user_name":"cougar",
-        "last_name":"Thomas",
-        "first_name":"David",
-        "middle_initial":"B",
-        "role":"tech",
-        "security_level":1,
-        "unit":"A",
-        "password":"123",
-        "confirmation":"123"
-      })
-      .end((err, res) => {
-        res.should.have.status(500)
-        done()
-      })
-  })
+  // it('should error with redundant user', done => {
+  //   chai
+  //     .request(app)
+  //     .post('/api/staff')
+  //     .send({
+  //       "user_name":"cougar",
+  //       "last_name":"Thomas",
+  //       "first_name":"David",
+  //       "middle_initial":"B",
+  //       "role":"tech",
+  //       "security_level":1,
+  //       "unit":"A",
+  //       "password":"123",
+  //       "confirmation":"123"
+  //     })
+  //     .end((err, res) => {
+  //       res.should.have.status(500)
+  //       done()
+  //     })
+  // })
 
   it('should update a staff member', done => {
     chai
